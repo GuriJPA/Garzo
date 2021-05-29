@@ -1,6 +1,6 @@
 <?php
 
-define('URL', 'http://localhost/Garzon2/');
+define('URL', 'http://localhost/Garzo/');
 
 define('HOST', 'localhost');
 define('DB', 'garcon');
