@@ -1,12 +1,21 @@
 <?php
+require_once 'controllers/errores.php';
+
 class App{
+
     function __construct(){
-        $url = isset($_GET['url'])? $_GET['url']:null;
+        //echo "<p>Nueva app</p>";
+
+        $url = isset($_GET['url']) ? $_GET['url']: null;
         $url = rtrim($url, '/');
         $url = explode('/', $url);
 
+        //var_dump($url);
+
+        //echo empty($url[0]);
+    
+        // cuando se ingresa sin definir controlador
         if(empty($url[0])){
-            error_log('APP::construct-> no hay controlador especificado');
             $archivoController = 'controllers/main.php';
             require_once $archivoController;
             $controller = new Main();
@@ -15,43 +24,54 @@ class App{
             return false;
         }
 
-         
-        $archivoController = 'controllers/' . $url[0] . '.php';
+        $url_controller = $url[0];
+        
+        session_start();
+        
+        if(!(isset($_SESSION['logueado']))){
+            $_SESSION['logueado'] = FALSE;
+        }
+
+        if($url_controller == 'admin' && $_SESSION['logueado'] == FALSE){
+            $url_controller = 'login';
+            $url= null;
+            $url[0] = '';
+        }
+
+        $archivoController = 'controllers/' . $url_controller . '.php';
 
         if(file_exists($archivoController)){
             require_once $archivoController;
 
             // inicializar controlador
-            $controller = new $url[0];
-            $controller->loadModel($url[0]);
+            $controller = new $url_controller;
+            $controller->loadModel($url_controller);
+            
+            // # elementos del arreglo
+            $nparam = sizeof($url);
 
-            // si hay un método que se requiere cargar
-            if(isset($url[1])){
-                if(method_exists($controller, $url[1])){
-                    if(isset($url[2])){
-                        //el método tiene parámetros
-                        //sacamos e # de parametros
-                        $nparam = sizeof($url) - 2;
-                        //crear un arreglo con los parametros
-                        $params = [];
-                        //iterar
-                        for($i = 0; $i < $nparam; $i++){
-                            array_push($params, $url[$i + 2]);
-                        }
-                        //pasarlos al metodo   
-                        $controller->{$url[1]}($params);
-                    }else{
-                        $controller->{$url[1]}();    
+            if($nparam > 1){
+                if($nparam > 2){
+                    $param = [];
+                    for($i = 2; $i<$nparam; $i++){
+                        array_push($param, $url[$i]);
                     }
+                    $controller->{$url[1]}($param);
                 }else{
-                    // $controller = new Errores(); 
+                    $controller->{$url[1]}();
                 }
             }else{
                 $controller->render();
             }
         }else{
-            // $controller = new Errores();
+            $controller = new Errores();
         }
+            
+        
+        
+        
+        
     }
 }
+
 ?>
