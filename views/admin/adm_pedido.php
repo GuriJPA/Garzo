@@ -16,6 +16,8 @@
     <br>
     <br>
     <div>
+
+    <!-- Agregar MESA       -->
         <table id='tabla_pedidos' style="border: 1px solid black;">
             <thead>
                 <tr>

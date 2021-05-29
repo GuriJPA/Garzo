@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-05-2021 a las 23:16:03
+-- Tiempo de generación: 30-05-2021 a las 01:15:28
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -84,7 +84,11 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`id_pedido`, `id_subpedido`, `id_producto`, `cantidad`, `fecha`, `id_mesa`, `id_restaurante`, `id_estado`) VALUES
-(1, 1, 3, 1, '', 1, 1, 1);
+(1, 1, 3, 1, '', 1, 1, 1),
+(2, 3, 30, 1, '', 1, 1, 2),
+(3, 1, 20, 2, '', 2, 1, 2),
+(4, 3, 40, 5, '', 1, 1, 2),
+(5, 1, 4, 7, '', 2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -227,7 +231,7 @@ ALTER TABLE `mesa`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pedido` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `restaurante`
