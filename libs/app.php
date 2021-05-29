@@ -5,6 +5,10 @@ class App{
         $url = rtrim($url, '/');
         $url = explode('/', $url);
 
+        if(!(isset($_SESSION['id_matriz']))){
+            $_SESSION['id_matriz'] = 0;
+        }
+        
         if(empty($url[0])){
             error_log('APP::construct-> no hay controlador especificado');
             $archivoController = 'controllers/main.php';
