@@ -40,3 +40,5 @@ include_once 'models/producto.php';
                     }
 
 ?>
+
+<html>Hola</html>
