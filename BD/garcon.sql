@@ -1,38 +1,39 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
--- http://www.phpmyadmin.net
+-- version 5.1.0
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 29, 2021 at 01:36 AM
--- Server version: 5.5.39
--- PHP Version: 7.3.28
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 29-05-2021 a las 23:16:03
+-- Versión del servidor: 10.4.19-MariaDB
+-- Versión de PHP: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `garcon`
+-- Base de datos: `garcon`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estados`
+-- Estructura de tabla para la tabla `estados`
 --
 
-CREATE TABLE IF NOT EXISTS `estados` (
-`id_estado` int(10) NOT NULL,
+CREATE TABLE `estados` (
+  `id_estado` int(10) NOT NULL,
   `nombre` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `estados`
+-- Volcado de datos para la tabla `estados`
 --
 
 INSERT INTO `estados` (`id_estado`, `nombre`) VALUES
@@ -45,16 +46,16 @@ INSERT INTO `estados` (`id_estado`, `nombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mesa`
+-- Estructura de tabla para la tabla `mesa`
 --
 
-CREATE TABLE IF NOT EXISTS `mesa` (
-`id_mesa` int(20) NOT NULL,
+CREATE TABLE `mesa` (
+  `id_mesa` int(20) NOT NULL,
   `numeroMesa` int(10) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `mesa`
+-- Volcado de datos para la tabla `mesa`
 --
 
 INSERT INTO `mesa` (`id_mesa`, `numeroMesa`) VALUES
@@ -64,11 +65,11 @@ INSERT INTO `mesa` (`id_mesa`, `numeroMesa`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pedido`
+-- Estructura de tabla para la tabla `pedido`
 --
 
-CREATE TABLE IF NOT EXISTS `pedido` (
-`id_pedido` int(10) NOT NULL,
+CREATE TABLE `pedido` (
+  `id_pedido` int(10) NOT NULL,
   `id_subpedido` int(10) NOT NULL,
   `id_producto` int(20) NOT NULL,
   `cantidad` int(20) NOT NULL,
@@ -76,10 +77,10 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   `id_mesa` int(50) NOT NULL,
   `id_restaurante` int(50) NOT NULL,
   `id_estado` int(10) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pedido`
+-- Volcado de datos para la tabla `pedido`
 --
 
 INSERT INTO `pedido` (`id_pedido`, `id_subpedido`, `id_producto`, `cantidad`, `fecha`, `id_mesa`, `id_restaurante`, `id_estado`) VALUES
@@ -88,10 +89,10 @@ INSERT INTO `pedido` (`id_pedido`, `id_subpedido`, `id_producto`, `cantidad`, `f
 -- --------------------------------------------------------
 
 --
--- Table structure for table `persona`
+-- Estructura de tabla para la tabla `persona`
 --
 
-CREATE TABLE IF NOT EXISTS `persona` (
+CREATE TABLE `persona` (
   `id_persona` int(10) NOT NULL,
   `usuario` varchar(20) NOT NULL,
   `nombre` varchar(50) NOT NULL,
@@ -104,20 +105,20 @@ CREATE TABLE IF NOT EXISTS `persona` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `persona`
+-- Volcado de datos para la tabla `persona`
 --
 
 INSERT INTO `persona` (`id_persona`, `usuario`, `nombre`, `apellidos`, `edad`, `descripcion`, `email`, `contrasena`, `foto`) VALUES
-(1, 'yocristian21', 'Cristian Yamil', 'Ortega', 18, 'Dueño de del restorante "la nueva esquina"', 'yocristian21@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'img/yocristian21/foto1.jpg'),
-(2, 'fabri21', 'fabricio', 'recchini', 25, 'Dueño del resto bar Antares.', 'fabri@gmail.com', 'contraseña', 'img/fabri21/perfil2.jpg');
+(1, 'admin2', 'Cristian Yamil', 'Ortega', 18, 'Dueño de del restorante \"la nueva esquina\"', 'yocristian21@gmail.com', 'd6b0ab7f1c8ab8f514db9a6d85de160a', 'img/yocristian21/foto1.jpg'),
+(2, 'admin', 'fabricio', 'recchini', 25, 'Dueño del resto bar Antares.', 'fabri@gmail.com', 'contraseña', 'img/fabri21/perfil2.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `producto`
+-- Estructura de tabla para la tabla `producto`
 --
 
-CREATE TABLE IF NOT EXISTS `producto` (
+CREATE TABLE `producto` (
   `id_producto` int(50) NOT NULL,
   `nombre` varchar(30) NOT NULL,
   `descripcion` varchar(100) NOT NULL,
@@ -128,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `producto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `producto`
+-- Volcado de datos para la tabla `producto`
 --
 
 INSERT INTO `producto` (`id_producto`, `nombre`, `descripcion`, `precio`, `foto`, `stock`, `categoria`) VALUES
@@ -143,105 +144,116 @@ INSERT INTO `producto` (`id_producto`, `nombre`, `descripcion`, `precio`, `foto`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `restaurante`
+-- Estructura de tabla para la tabla `restaurante`
 --
 
-CREATE TABLE IF NOT EXISTS `restaurante` (
-`id_restaurante` int(11) NOT NULL,
+CREATE TABLE `restaurante` (
+  `id_restaurante` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
   `foto` varbinary(200) NOT NULL,
   `id_persona` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `restaurante`
+-- Volcado de datos para la tabla `restaurante`
 --
 
 INSERT INTO `restaurante` (`id_restaurante`, `nombre`, `foto`, `id_persona`) VALUES
 (1, 'Antares', 0x666f746f5f416e7461726573, 1);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `estados`
+-- Indices de la tabla `estados`
 --
 ALTER TABLE `estados`
- ADD PRIMARY KEY (`id_estado`);
+  ADD PRIMARY KEY (`id_estado`);
 
 --
--- Indexes for table `mesa`
+-- Indices de la tabla `mesa`
 --
 ALTER TABLE `mesa`
- ADD PRIMARY KEY (`id_mesa`);
+  ADD PRIMARY KEY (`id_mesa`);
 
 --
--- Indexes for table `pedido`
+-- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
- ADD PRIMARY KEY (`id_pedido`), ADD KEY `id_producto` (`id_producto`), ADD KEY `id_mesa` (`id_mesa`), ADD KEY `id_restaurante` (`id_restaurante`), ADD KEY `id_mesa_2` (`id_mesa`), ADD KEY `id_estado` (`id_estado`);
+  ADD PRIMARY KEY (`id_pedido`),
+  ADD KEY `id_producto` (`id_producto`),
+  ADD KEY `id_mesa` (`id_mesa`),
+  ADD KEY `id_restaurante` (`id_restaurante`),
+  ADD KEY `id_mesa_2` (`id_mesa`),
+  ADD KEY `id_estado` (`id_estado`);
 
 --
--- Indexes for table `persona`
+-- Indices de la tabla `persona`
 --
 ALTER TABLE `persona`
- ADD PRIMARY KEY (`id_persona`);
+  ADD PRIMARY KEY (`id_persona`);
 
 --
--- Indexes for table `producto`
+-- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
- ADD PRIMARY KEY (`id_producto`);
+  ADD PRIMARY KEY (`id_producto`);
 
 --
--- Indexes for table `restaurante`
+-- Indices de la tabla `restaurante`
 --
 ALTER TABLE `restaurante`
- ADD PRIMARY KEY (`id_restaurante`), ADD KEY `id_persona` (`id_persona`);
+  ADD PRIMARY KEY (`id_restaurante`),
+  ADD KEY `id_persona` (`id_persona`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `estados`
+-- AUTO_INCREMENT de la tabla `estados`
 --
 ALTER TABLE `estados`
-MODIFY `id_estado` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id_estado` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
--- AUTO_INCREMENT for table `mesa`
+-- AUTO_INCREMENT de la tabla `mesa`
 --
 ALTER TABLE `mesa`
-MODIFY `id_mesa` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id_mesa` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
--- AUTO_INCREMENT for table `pedido`
+-- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-MODIFY `id_pedido` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_pedido` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `restaurante`
+-- AUTO_INCREMENT de la tabla `restaurante`
 --
 ALTER TABLE `restaurante`
-MODIFY `id_restaurante` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_restaurante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `pedido`
+-- Filtros para la tabla `pedido`
 --
 ALTER TABLE `pedido`
-ADD CONSTRAINT `pedido_ibfk_4` FOREIGN KEY (`id_estado`) REFERENCES `estados` (`id_estado`) ON DELETE CASCADE,
-ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE,
-ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `mesa` (`id_mesa`) ON UPDATE CASCADE,
-ADD CONSTRAINT `pedido_ibfk_3` FOREIGN KEY (`id_restaurante`) REFERENCES `restaurante` (`id_restaurante`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `mesa` (`id_mesa`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_3` FOREIGN KEY (`id_restaurante`) REFERENCES `restaurante` (`id_restaurante`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `pedido_ibfk_4` FOREIGN KEY (`id_estado`) REFERENCES `estados` (`id_estado`) ON DELETE CASCADE;
 
 --
--- Constraints for table `restaurante`
+-- Filtros para la tabla `restaurante`
 --
 ALTER TABLE `restaurante`
-ADD CONSTRAINT `restaurante_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id_persona`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `restaurante_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id_persona`) ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
