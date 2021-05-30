@@ -16,18 +16,12 @@
     <br>
     <br>
     <div>
-<<<<<<< HEAD
         <table id='tabla_mesas' style="border: 1px solid black;">
-            <thead>
-                <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                </tr>
-            </thead>  
+            
             <tbody id='mesas'>
                 <?php
                 include_once 'models/mesa.php';
+                include_once 'models/pedido.php';
                 foreach($this->mesas as $row){
                     $mesa = new Mesa();
                     $mesa = $row; 
@@ -35,7 +29,31 @@
                         <td>N MESA $mesa->id_mesa</td>                     
                         <td><input type='button' value='COBRAR MESA'/></td>
                         <td><input type='button' value='SE SOLICITA MOZO'/></td>
+
                         </tr>";
+                    echo "<tr>
+                        <td>N PEDIDO</td>                     
+                        <td>ESTADO</td>
+                        <td>TOTAL</td>
+                        <td>TOMAR PEDIDO</td>
+                        <td>ESTA LISTO?</td>
+                        <td>FECHA Y HORA</td>
+                        </tr>";
+                        foreach($this->pedidos as $row){
+                            $pedido = new Pedido();
+                            $pedido = $row; 
+                            if($pedido->id_mesa == $mesa->id_mesa){
+                                echo "<tr>
+                                <td>$pedido->id_pedido</td>
+                                <td>$pedido->estado</td>
+                                <td>$pedido->cantidad</td>                        
+                                <td><input type='button' value='Tomar Pedido'/></td>
+                                <td><input type='button' value='Si/No'/></td>
+                                <td>$pedido->fecha</td>
+                                <td><input type='button' value='Detalle'/></td>
+                                </tr>";
+                            }
+                        }        
                 }        
                 ?>
             </tbody>  
@@ -44,10 +62,6 @@
     <br>
     <br>
     <div>
-=======
-
-    <!-- Agregar MESA       -->
->>>>>>> fa7bad30d4ec2d25d030b40d8dce492c75eefc11
         <table id='tabla_pedidos' style="border: 1px solid black;">
             <thead>
                 <tr>
@@ -57,7 +71,6 @@
                 <th>TOMAR PEDIDO</th>
                 <th>ESTA LISTO?</th>                
                 <th>FECHA Y HORA</th>
-                <th></th>
                 </tr>
             </thead>            
             <tbody id='pedidos'>
