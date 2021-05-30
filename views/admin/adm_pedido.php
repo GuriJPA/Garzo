@@ -26,7 +26,8 @@
 
                 foreach($this->mesas as $row){
                     $mesa = new Mesa();
-                    $mesa = $row; 
+                    $mesa = $row;
+                    $contador = 1;
                     echo "<tr>
                         <td>N MESA $mesa->id_mesa</td>                     
                         <td><input type='button' value='COBRAR MESA'/></td>
@@ -43,8 +44,9 @@
                         </tr>";
                         foreach($this->pedidos as $row){
                             $pedido = new Pedido();
-                            $pedido = $row;       
-                                               
+                            $pedido = $row;     
+                              
+                            //calcula el monto total de los productos que estan en el mismo pedido                
                             foreach($this->productos as $row){
                                 $producto = new Producto();
                                 $producto = $row;
@@ -53,21 +55,21 @@
                                 }
                             }
                             
-                            
-                            //$total = $pedido->id_producto->precio;
-                            /*if($pedido->id_mesa == $mesa->id_mesa){
-                                $total = ($pedido->id_producto->precio);
-                            }*/
+                            //imprime solamente los pedidos de la mesa
                             if($pedido->id_mesa == $mesa->id_mesa){
-                                echo "<tr>
-                                <td>$pedido->id_subpedido</td>
-                                <td>$pedido->estado</td>
-                                <td>$ $total</td>                        
-                                <td><input type='button' value='Tomar Pedido'/></td>
-                                <td><input type='button' value='Si/No'/></td>
-                                <td>$pedido->fecha</td>
-                                <td><input type='button' value='Detalle'/></td>
-                                </tr>";
+                                //imprime los pedidos
+                                if($pedido->id_subpedido == $contador){
+                                    $contador++;                                
+                                    echo "<tr>
+                                    <td>$pedido->id_subpedido</td>
+                                    <td>$pedido->estado</td>
+                                    <td>$ $total</td>                        
+                                    <td><input type='button' value='Tomar Pedido'/></td>
+                                    <td><input type='button' value='Si/No'/></td>
+                                    <td>$pedido->fecha</td>
+                                    <td><input type='button' value='Detalle'/></td>
+                                    </tr>";
+                                }   
                             }
                         }        
                 }        
