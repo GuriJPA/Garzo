@@ -19,7 +19,7 @@
         <table id='tabla_mesas' style="border: 1px solid black;">
             <thead>
                 <tr>
-                <th>N MESA</th>
+                <th></th>
                 <th></th>
                 <th></th>
                 </tr>
@@ -31,7 +31,7 @@
                     $mesa = new Mesa();
                     $mesa = $row; 
                     echo "<tr>
-                        <td>$mesa->id_mesa</td>                     
+                        <td>N MESA $mesa->id_mesa</td>                     
                         <td><input type='button' value='COBRAR MESA'/></td>
                         <td><input type='button' value='SE SOLICITA MOZO'/></td>
                         </tr>";
