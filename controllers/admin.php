@@ -19,6 +19,11 @@ class Admin extends Controller{
         $this->loadModel('consulta_pedido');
         $pedidos = $this->model->get_pedidos('');
         $this->view->pedidos = $pedidos;
+
+        $this->loadModel('consulta_mesa');
+        $mesas = $this->model->get_mesas('');
+        $this->view->mesas = $mesas;
+        
         $this->view->render('admin/adm_pedido');
     }
     

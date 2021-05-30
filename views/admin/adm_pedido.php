@@ -16,6 +16,33 @@
     <br>
     <br>
     <div>
+        <table id='tabla_mesas' style="border: 1px solid black;">
+            <thead>
+                <tr>
+                <th>N MESA</th>
+                <th></th>
+                <th></th>
+                </tr>
+            </thead>  
+            <tbody id='mesas'>
+                <?php
+                include_once 'models/mesa.php';
+                foreach($this->mesas as $row){
+                    $mesa = new Mesa();
+                    $mesa = $row; 
+                    echo "<tr>
+                        <td>$mesa->id_mesa</td>                     
+                        <td><input type='button' value='COBRAR MESA'/></td>
+                        <td><input type='button' value='SE SOLICITA MOZO'/></td>
+                        </tr>";
+                }        
+                ?>
+            </tbody>  
+        </table>
+    </div>
+    <br>
+    <br>
+    <div>
         <table id='tabla_pedidos' style="border: 1px solid black;">
             <thead>
                 <tr>
@@ -47,7 +74,6 @@
                 ?>
             </tbody>
         </table>
-
     </div>
 </body>
 </html>
