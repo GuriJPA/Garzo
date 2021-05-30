@@ -23,11 +23,13 @@
                 include_once 'models/mesa.php';
                 include_once 'models/pedido.php';
                 include_once 'models/producto.php';
-
+                $total = 0;
+                $subtotal = 0;
                 foreach($this->mesas as $row){
                     $mesa = new Mesa();
                     $mesa = $row;
                     $contador = 1;
+                    
                     echo "<tr>
                         <td>N MESA $mesa->id_mesa</td>                     
                         <td><input type='button' value='COBRAR MESA'/></td>
@@ -37,6 +39,9 @@
                     echo "<tr>
                         <td>N PEDIDO</td>                     
                         <td>ESTADO</td>
+                        <td>PRECIO UNIT</td>
+                        <td>CANTIDAD</td>
+                        <td>SUBTOTAL</td>
                         <td>TOTAL</td>
                         <td>TOMAR PEDIDO</td>
                         <td>ESTA LISTO?</td>
@@ -44,25 +49,55 @@
                         </tr>";
                         foreach($this->pedidos as $row){
                             $pedido = new Pedido();
-                            $pedido = $row;     
+                            $pedido = $row;
+                            
                               
                             //calcula el monto total de los productos que estan en el mismo pedido                
                             foreach($this->productos as $row){
                                 $producto = new Producto();
                                 $producto = $row;
                                 if($producto->id_producto == $pedido->id_producto ){
-                                    $total += $producto->precio * $pedido->cantidad;
+                                    $precio = $producto->precio;
+                                    $subtotal= $precio*$pedido->cantidad;
+                                    
                                 }
                             }
+                            /*foreach($this->pedidos as $row){
+                                $pedido = new Pedido();
+                                $pedido = $row;
+                                if($pedido->id_subpedido == 2){
+                                    $subtotal= $precio*$pedido->cantidad;
+                                    $total+= $subtotal;
+                                }
+                            }*/
                             
                             //imprime solamente los pedidos de la mesa
                             if($pedido->id_mesa == $mesa->id_mesa){
-                                //imprime los pedidos
-                                if($pedido->id_subpedido == $contador){
-                                    $contador++;                                
+
+                                if($pedido->id_subpedido == $contador){  
+                                    $total = $total + $subtotal;                              
                                     echo "<tr>
                                     <td>$pedido->id_subpedido</td>
                                     <td>$pedido->estado</td>
+                                    <td>$ $precio</td>
+                                    <td>$pedido->cantidad</td>
+                                    <td>$ $subtotal</td>
+                                    <td>$ $total</td>                        
+                                    <td><input type='button' value='Tomar Pedido'/></td>
+                                    <td><input type='button' value='Si/No'/></td>
+                                    <td>$pedido->fecha</td>
+                                    <td><input type='button' value='Detalle'/></td>
+                                    </tr>";
+                                }
+                                else{
+                                    $contador++;
+                                    $total = $subtotal;
+                                    echo "<tr>
+                                    <td>$pedido->id_subpedido</td>
+                                    <td>$pedido->estado</td>
+                                    <td>$ $precio</td>
+                                    <td>$pedido->cantidad</td>
+                                    <td>$ $subtotal</td>
                                     <td>$ $total</td>                        
                                     <td><input type='button' value='Tomar Pedido'/></td>
                                     <td><input type='button' value='Si/No'/></td>
@@ -71,7 +106,8 @@
                                     </tr>";
                                 }   
                             }
-                        }        
+                        }
+                        $total = 0;        
                 }        
                 ?>
             </tbody>  
