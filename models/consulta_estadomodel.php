@@ -11,7 +11,7 @@ class Consulta_EstadoModel extends Model{
     public function get_estados(){
         $items = [];
         try{
-            $query = $this->db->connect()->query("SELECT*FROM estado");
+            $query = $this->db->connect()->query("SELECT*FROM estados");
             while($row = $query->fetch()){
                 $item = new Estado();
                 $item->id_estado = $row['id_estado'];

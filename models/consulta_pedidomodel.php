@@ -29,7 +29,7 @@ class Consulta_PedidoModel extends Model{
                 $item->fecha = $row['fecha'];
                 $item->id_mesa    = $row['id_mesa'];
                 $item->id_restaurante  = $row['id_restaurante'];
-                $item->estado  = $row['id_estado'];
+                $item->id_estado  = $row['id_estado'];
 
                 array_push($items, $item);
             }

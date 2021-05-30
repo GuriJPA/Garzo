@@ -23,8 +23,10 @@
                 include_once 'models/mesa.php';
                 include_once 'models/pedido.php';
                 include_once 'models/producto.php';
+                include_once 'models/estado.php';
                 $total = 0;
                 $subtotal = 0;
+                $totales = [];
                 foreach($this->mesas as $row){
                     $mesa = new Mesa();
                     $mesa = $row;
@@ -50,7 +52,6 @@
                         foreach($this->pedidos as $row){
                             $pedido = new Pedido();
                             $pedido = $row;
-                            
                               
                             //calcula el monto total de los productos que estan en el mismo pedido                
                             foreach($this->productos as $row){
@@ -62,14 +63,13 @@
                                     
                                 }
                             }
-                            /*foreach($this->pedidos as $row){
-                                $pedido = new Pedido();
-                                $pedido = $row;
-                                if($pedido->id_subpedido == 2){
-                                    $subtotal= $precio*$pedido->cantidad;
-                                    $total+= $subtotal;
+                            foreach($this->estados as $row){
+                                $estado = new Estado();
+                                $estado = $row;
+                                if($estado->id_estado == $pedido->id_estado){
+                                    $estadoPedido = $estado->nombre;
                                 }
-                            }*/
+                            }
                             
                             //imprime solamente los pedidos de la mesa
                             if($pedido->id_mesa == $mesa->id_mesa){
@@ -78,7 +78,7 @@
                                     $total = $total + $subtotal;                              
                                     echo "<tr>
                                     <td>$pedido->id_subpedido</td>
-                                    <td>$pedido->estado</td>
+                                    <td>$estadoPedido</td>
                                     <td>$ $precio</td>
                                     <td>$pedido->cantidad</td>
                                     <td>$ $subtotal</td>
@@ -91,10 +91,11 @@
                                 }
                                 else{
                                     $contador++;
+                                    array_push($totales, $total);
                                     $total = $subtotal;
                                     echo "<tr>
                                     <td>$pedido->id_subpedido</td>
-                                    <td>$pedido->estado</td>
+                                    <td>$estadoPedido</td>
                                     <td>$ $precio</td>
                                     <td>$pedido->cantidad</td>
                                     <td>$ $subtotal</td>
@@ -147,5 +148,6 @@
             </tbody>
         </table>
     </div>
+
 </body>
 </html>
