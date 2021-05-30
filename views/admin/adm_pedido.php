@@ -22,6 +22,8 @@
                 <?php
                 include_once 'models/mesa.php';
                 include_once 'models/pedido.php';
+                include_once 'models/producto.php';
+
                 foreach($this->mesas as $row){
                     $mesa = new Mesa();
                     $mesa = $row; 
@@ -41,12 +43,26 @@
                         </tr>";
                         foreach($this->pedidos as $row){
                             $pedido = new Pedido();
-                            $pedido = $row; 
+                            $pedido = $row;       
+                                               
+                            foreach($this->productos as $row){
+                                $producto = new Producto();
+                                $producto = $row;
+                                if($producto->id_producto == $pedido->id_producto ){
+                                    $total += $producto->precio * $pedido->cantidad;
+                                }
+                            }
+                            
+                            
+                            //$total = $pedido->id_producto->precio;
+                            /*if($pedido->id_mesa == $mesa->id_mesa){
+                                $total = ($pedido->id_producto->precio);
+                            }*/
                             if($pedido->id_mesa == $mesa->id_mesa){
                                 echo "<tr>
-                                <td>$pedido->id_pedido</td>
+                                <td>$pedido->id_subpedido</td>
                                 <td>$pedido->estado</td>
-                                <td>$pedido->cantidad</td>                        
+                                <td>$ $total</td>                        
                                 <td><input type='button' value='Tomar Pedido'/></td>
                                 <td><input type='button' value='Si/No'/></td>
                                 <td>$pedido->fecha</td>

@@ -20,6 +20,10 @@ class Admin extends Controller{
         $pedidos = $this->model->get_pedidos('');
         $this->view->pedidos = $pedidos;
 
+        $this->loadModel('consulta_product');
+        $productos = $this->model->get_productos('');
+        $this->view->productos = $productos;
+
         $this->loadModel('consulta_mesa');
         $mesas = $this->model->get_mesas('');
         $this->view->mesas = $mesas;
