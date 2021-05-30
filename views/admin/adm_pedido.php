@@ -16,6 +16,7 @@
     <br>
     <br>
     <div>
+<<<<<<< HEAD
         <table id='tabla_mesas' style="border: 1px solid black;">
             <thead>
                 <tr>
@@ -43,6 +44,10 @@
     <br>
     <br>
     <div>
+=======
+
+    <!-- Agregar MESA       -->
+>>>>>>> fa7bad30d4ec2d25d030b40d8dce492c75eefc11
         <table id='tabla_pedidos' style="border: 1px solid black;">
             <thead>
                 <tr>
