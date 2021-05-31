@@ -35,6 +35,14 @@ class Admin extends Controller{
         
         $this->view->render('admin/adm_pedido');
     }
+
+    function tomar_pedido(){
+        //echo "<p>Entrando</p>";
+        $IdPed = $_POST['id_pedido'];
+        //echo  $producto_r[0];
+        $this->loadModel('consulta_pedido');
+        $this->model->set_estado_en_preparacion($IdPed);
+    }
     
 }
 

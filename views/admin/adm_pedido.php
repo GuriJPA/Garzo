@@ -10,6 +10,7 @@
     table {border-collapse: collapse;}
     </style>
     <link rel="stylesheet" type="text/css" href="<?php echo constant('URL'); ?>public/css/style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
 </head>
 <body>
     <a href="<?php echo constant('URL'); ?>admin"><input type="button" value="Volver"/></a>
@@ -52,11 +53,12 @@
                         foreach($this->pedidos as $row){
                             $pedido = new Pedido();
                             $pedido = $row;
-                              
+                            $Id=$pedido->id_pedido;  
                             //calcula el monto total de los productos que estan en el mismo pedido                
                             foreach($this->productos as $row){
                                 $producto = new Producto();
                                 $producto = $row;
+                                
                                 if($producto->id_producto == $pedido->id_producto ){
                                     $precio = $producto->precio;
                                     $subtotal= $precio*$pedido->cantidad;
@@ -83,10 +85,10 @@
                                     <td>$pedido->cantidad</td>
                                     <td>$ $subtotal</td>
                                     <td>$ $total</td>                        
-                                    <td><input type='button' value='Tomar Pedido'/></td>
-                                    <td><input type='button' value='Si/No'/></td>
+                                    <td><input type='button' onclick= TomarPedido(id) id= $Id value='Tomar Pedido'/></td>
+                                    <td><input type='button' onclick= id='SiNo' value='Si/No'/></td>
                                     <td>$pedido->fecha</td>
-                                    <td><input type='button' value='Detalle'/></td>
+                                    <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
                                     </tr>";
                                 }
                                 else{
@@ -100,10 +102,10 @@
                                     <td>$pedido->cantidad</td>
                                     <td>$ $subtotal</td>
                                     <td>$ $total</td>                        
-                                    <td><input type='button' value='Tomar Pedido'/></td>
-                                    <td><input type='button' value='Si/No'/></td>
+                                    <td><input type='button' onclick= TomarPedido(id) id= $Id value='Tomar Pedido'/></td>
+                                    <td><input type='button' onclick= id='SiNo' value='Si/No'/></td>
                                     <td>$pedido->fecha</td>
-                                    <td><input type='button' value='Detalle'/></td>
+                                    <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
                                     </tr>";
                                 }   
                             }
@@ -148,6 +150,42 @@
             </tbody>
         </table>
     </div>
-
+    
 </body>
 </html>
+
+
+<script type="text/javascript">
+
+function TomarPedido(id){
+
+    
+    //alert(id);
+
+    $.ajax({
+                                   type: "POST",
+                                   url: "../admin/tomar_pedido",
+                                   data: {id_pedido : id},
+                                   dataType: "html",
+                                   beforeSend: function(){
+                                              //imagen de carga
+                                           //$("#result_producto").html("<p align='center'><img src='../../public/img/ajax-loader.gif' /></p>");
+                                   },
+                                   error: function(){
+                                           alert("error petición ajax");
+                                     },
+                                  success: function(data){
+                                  alert("Se tomo el pedido");                                                    
+                                    //    $("#result_producto").empty();
+                                    //   $("#result_producto").append(data);      
+                                    }
+                            });
+
+    location.reload(true);
+
+}
+
+
+
+
+</script>

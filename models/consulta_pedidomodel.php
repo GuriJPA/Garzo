@@ -41,6 +41,23 @@ class Consulta_PedidoModel extends Model{
         }
     }
 
+    public function set_estado_en_preparacion($param){
+        
+       
+
+
+        try{
+            //$query = $this->db->connect()->query("SELECT*FROM pedido WHERE  id_pedido= $param");
+            $query = $this->db->connect()->query("UPDATE pedido SET id_estado = '2' WHERE id_pedido= '$param'");
+
+  
+            return null;
+        }catch(PDOException $e){
+            return [];
+            
+        } 
+    }
+
 }
 
 ?>
