@@ -52,6 +52,15 @@ class Admin extends Controller{
         if($listo[1]==3){
         $this->model->set_estado_en_preparacion($listo[0]);}
     }
+
+    function adm_product(){
+        $this->loadModel('consulta_product');
+        $productos = $this->model->get_productos('');
+        $this->view->productos = $productos;
+        $this->view->render('admin/adm_product');
+    }
+   
+
     
 }
 
