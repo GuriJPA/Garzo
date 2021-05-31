@@ -177,8 +177,9 @@ function TomarPedido(id,es){
                             });
 
     location.reload(true);
-    location.reload(true);
+    
         }
+    location.reload(true);    
 }
 
 
