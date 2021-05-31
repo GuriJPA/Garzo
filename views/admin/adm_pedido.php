@@ -54,6 +54,7 @@
                             $pedido = new Pedido();
                             $pedido = $row;
                             $Id=$pedido->id_pedido;  
+                            $es=$pedido->id_estado;
                             //calcula el monto total de los productos que estan en el mismo pedido                
                             foreach($this->productos as $row){
                                 $producto = new Producto();
@@ -85,7 +86,7 @@
                                     <td>$pedido->cantidad</td>
                                     <td>$ $subtotal</td>
                                     <td>$ $total</td>                        
-                                    <td><input type='button' onclick= TomarPedido(id) id= $Id value='Tomar Pedido'/></td>
+                                    <td><input type='button' onclick= TomarPedido(id,$es) id= $Id value='Tomar Pedido'/></td>
                                     <td><input type='button' onclick= id='SiNo' value='Si/No'/></td>
                                     <td>$pedido->fecha</td>
                                     <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
@@ -102,7 +103,7 @@
                                     <td>$pedido->cantidad</td>
                                     <td>$ $subtotal</td>
                                     <td>$ $total</td>                        
-                                    <td><input type='button' onclick= TomarPedido(id) id= $Id value='Tomar Pedido'/></td>
+                                    <td><input type='button' onclick= TomarPedido(id,$es) id= $Id value='Tomar Pedido'/></td>
                                     <td><input type='button' onclick= id='SiNo' value='Si/No'/></td>
                                     <td>$pedido->fecha</td>
                                     <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
@@ -157,32 +158,26 @@
 
 <script type="text/javascript">
 
-function TomarPedido(id){
+function TomarPedido(id,es){
 
     
-    //alert(id);
-
-    $.ajax({
-                                   type: "POST",
-                                   url: "../admin/tomar_pedido",
-                                   data: {id_pedido : id},
-                                   dataType: "html",
-                                   beforeSend: function(){
-                                              //imagen de carga
-                                           //$("#result_producto").html("<p align='center'><img src='../../public/img/ajax-loader.gif' /></p>");
-                                   },
-                                   error: function(){
-                                           alert("error petición ajax");
+    //alert(es);
+    if(es==1){
+        $.ajax({
+                type: "POST",
+                 url: "../admin/tomar_pedido",
+                data: {id_pedido : id},
+                dataType: "html",
+                beforeSend: function(){},
+                error: function(){
+                alert("error petición ajax");
                                      },
-                                  success: function(data){
-                                  alert("Se tomo el pedido");                                                    
-                                    //    $("#result_producto").empty();
-                                    //   $("#result_producto").append(data);      
-                                    }
+                success: function(data){
+                alert("Se tomo el pedido");}
                             });
 
     location.reload(true);
-
+        }
 }
 
 
