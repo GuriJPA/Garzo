@@ -22,6 +22,8 @@ class Consulta_ProductModel extends Model{
             }else{ // si no existe traigo solamente lo que diga categoria
                 $query = $this->db->connect()->query("SELECT*FROM producto WHERE categoria='$cat_param'");
             }
+
+            
             
             // recorro todo lo que traje filtrado que tengo en query
             while($row = $query->fetch()){
