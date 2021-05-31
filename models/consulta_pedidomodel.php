@@ -65,7 +65,7 @@ class Consulta_PedidoModel extends Model{
          } 
     }
 
-    //Actualiza el estado del pedido a PIDIO CUENTA usando como referencia el parametro $param = id_mesa
+    //Actualiza el estado del pedido a PIDIO CUENTA usando como referencia el parametro $param = id_pedido
     public function set_estado_pidio_cuenta($param){
         
         try{
@@ -77,7 +77,7 @@ class Consulta_PedidoModel extends Model{
          } 
     }
 
-    //Actualiza el estado del pedido a FINALIZADO usando como referencia el parametro $param = id_mesa
+    //Actualiza el estado del pedido a FINALIZADO usando como referencia el parametro $param = id_pedido
     public function set_estado_finalizado($param){
         
         try{

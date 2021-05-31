@@ -87,7 +87,7 @@
                                     <td>$ $subtotal</td>
                                     <td>$ $total</td>                        
                                     <td><input type='button' onclick= TomarPedido(id,$es) id= $Id value='Tomar Pedido'/></td>
-                                    <td><input type='button' onclick= id='SiNo' value='Si/No'/></td>
+                                    <td><input type='button' onclick= EstaListoSiNo(id,$es) id=$Id value='Si/No'/></td>
                                     <td>$pedido->fecha</td>
                                     <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
                                     </tr>";
@@ -104,7 +104,7 @@
                                     <td>$ $subtotal</td>
                                     <td>$ $total</td>                        
                                     <td><input type='button' onclick= TomarPedido(id,$es) id= $Id value='Tomar Pedido'/></td>
-                                    <td><input type='button' onclick= id='SiNo' value='Si/No'/></td>
+                                    <td><input type='button' onclick= EstaListoSiNo(id,$es) id=$Id value='Si/No'/></td>
                                     <td>$pedido->fecha</td>
                                     <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
                                     </tr>";
@@ -177,7 +177,30 @@ function TomarPedido(id,es){
                             });
 
     location.reload(true);
+    location.reload(true);
         }
+}
+
+
+function EstaListoSiNo(id,es){
+    let datos=[id, es];
+    $.ajax({
+            type: "POST",
+             url: "../admin/esta_listo",
+            data: {array_id_es : datos},
+            dataType: "html",
+            beforeSend: function(){},
+            error: function(){
+            alert("error petición ajax");
+                                 },
+            success: function(data){
+            //alert("Se tomo el pedido");
+            }
+                        });
+
+location.reload(true);
+location.reload(true);
+    
 }
 
 

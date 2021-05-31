@@ -43,6 +43,15 @@ class Admin extends Controller{
         $this->loadModel('consulta_pedido');
         $this->model->set_estado_en_preparacion($IdPed);
     }
+
+    function esta_listo(){
+        $listo = $_POST['array_id_es'];
+        $this->loadModel('consulta_pedido');
+        if($listo[1]==2){
+        $this->model->set_estado_listo($listo[0]);}
+        if($listo[1]==3){
+        $this->model->set_estado_en_preparacion($listo[0]);}
+    }
     
 }
 
