@@ -41,22 +41,56 @@ class Consulta_PedidoModel extends Model{
         }
     }
 
+    //Actualiza el estado del pedido a EN PREAPARACION usando como referencia el parametro $param = id_pedido
     public function set_estado_en_preparacion($param){
         
-       
-
-
         try{
-            //$query = $this->db->connect()->query("SELECT*FROM pedido WHERE  id_pedido= $param");
-            $query = $this->db->connect()->query("UPDATE pedido SET id_estado = '2' WHERE id_pedido= '$param'");
-
-  
+           $query = $this->db->connect()->query("UPDATE pedido SET id_estado = '2' WHERE id_pedido= '$param'");
             return null;
         }catch(PDOException $e){
             return [];
             
         } 
     }
+    
+    //Actualiza el estado del pedido a LISTO usando como referencia el parametro $param = id_pedido
+    public function set_estado_listo($param){
+        
+        try{
+            $query = $this->db->connect()->query("UPDATE pedido SET id_estado = '3' WHERE id_pedido= '$param'");
+             return null;
+         }catch(PDOException $e){
+             return [];
+             
+         } 
+    }
+
+    //Actualiza el estado del pedido a PIDIO CUENTA usando como referencia el parametro $param = id_mesa
+    public function set_estado_pidio_cuenta($param){
+        
+        try{
+            $query = $this->db->connect()->query("UPDATE pedido SET id_estado = '4' WHERE id_pedido= '$param'");
+             return null;
+         }catch(PDOException $e){
+             return [];
+             
+         } 
+    }
+
+    //Actualiza el estado del pedido a FINALIZADO usando como referencia el parametro $param = id_mesa
+    public function set_estado_finalizado($param){
+        
+        try{
+            $query = $this->db->connect()->query("UPDATE pedido SET id_estado = '5' WHERE id_pedido= '$param'");
+             return null;
+         }catch(PDOException $e){
+             return [];
+             
+         } 
+    }
+
+
+   
 
 }
 
