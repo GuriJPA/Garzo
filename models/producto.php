@@ -9,6 +9,7 @@ class Producto{
     public $foto;
     public $stock;
     public $categoria;
+    public $cantidad;
 }
 
 ?>
