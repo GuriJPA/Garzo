@@ -57,25 +57,7 @@
 
 
     <?php
-    
-    /*echo $this->cuenta->nombre_restaurante;
-
-    echo "<br>";
-
-    foreach($this->cuenta->productos as $row){
-        $producto = new Producto();
-        $producto = $row;
-        echo $producto->nombre;
-        echo "<br>";
-        echo $producto->precio;
-        echo "<br>";
-        echo $producto->cantidad;
-        echo "<br>";
-        echo "<br>";
-    }*/
-
-
-    require_once 'libs/dompdf/autoload.inc.php';
+     require_once 'libs/dompdf/autoload.inc.php';
     use Dompdf\Dompdf;
     $dompdf = new DOMPDF();
     $dompdf->load_html(ob_get_clean());

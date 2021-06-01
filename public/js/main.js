@@ -39,3 +39,6 @@ function fun_buscar_producto(id) {
                             });
     }
 
+    function generar_comprobante(num_comprobante) {
+        window.location.replace("pedir_cuenta/cuenta_pdf/"+num_comprobante);
+    }
