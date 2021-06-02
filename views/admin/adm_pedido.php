@@ -35,7 +35,7 @@
                     
                     echo "<tr>
                         <td>N MESA $mesa->id_mesa</td>                     
-                        <td><input type='button' value='COBRAR MESA'/></td>
+                        <td><input type='button' onclick=CobrarMesa($mesa->id_mesa) value='COBRAR MESA'/></td>
                         <td><input type='button' value='SE SOLICITA MOZO'/></td>
 
                         </tr>";
@@ -76,7 +76,7 @@
                             
                             //imprime solamente los pedidos de la mesa
                             if($pedido->id_mesa == $mesa->id_mesa){
-
+                                
                                 if($pedido->id_subpedido == $contador){  
                                     $total = $total + $subtotal;                              
                                     echo "<tr>
@@ -185,6 +185,7 @@ function TomarPedido(id,es){
 
 function EstaListoSiNo(id,es){
     let datos=[id, es];
+    if (es==2){
     $.ajax({
             type: "POST",
              url: "../admin/esta_listo",
@@ -199,11 +200,30 @@ function EstaListoSiNo(id,es){
             }
                         });
 
+location.reload(true);}
 location.reload(true);
-location.reload(true);
-    
 }
 
+
+function CobrarMesa(idmesa){
+
+//alert (idmesa);
+
+$.ajax({
+            type: "POST",
+             url: "../admin/cobrar_mesa",
+            data: {IdMesa : idmesa},
+            dataType: "html",
+            beforeSend: function(){},
+            error: function(){
+            alert("error petición ajax");
+                                 },
+            success: function(data){
+            alert("Se cobro la Mesa "+idmesa);
+            }
+                        });
+location.reload(true);
+}
 
 
 

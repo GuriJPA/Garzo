@@ -77,11 +77,11 @@ class Consulta_PedidoModel extends Model{
          } 
     }
 
-    //Actualiza el estado del pedido a FINALIZADO usando como referencia el parametro $param = id_pedido
+    //Actualiza el estado del pedido a FINALIZADO usando como referencia el parametro $param = id_mesa
     public function set_estado_finalizado($param){
         
         try{
-            $query = $this->db->connect()->query("UPDATE pedido SET id_estado = '5' WHERE id_pedido= '$param'");
+            $query = $this->db->connect()->query("UPDATE pedido SET id_estado = '5' WHERE id_mesa= '$param'");
              return null;
          }catch(PDOException $e){
              return [];

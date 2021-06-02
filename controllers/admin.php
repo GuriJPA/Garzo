@@ -59,9 +59,15 @@ class Admin extends Controller{
         $this->view->productos = $productos;
         $this->view->render('admin/adm_product');
     }
+
+    function cobrar_mesa(){
+        $IDMesa = $_POST['IdMesa'];
+        $this->loadModel('consulta_pedido');
+        $this->model->set_estado_finalizado($IDMesa);}
+}
    
 
     
-}
+
 
 ?>
