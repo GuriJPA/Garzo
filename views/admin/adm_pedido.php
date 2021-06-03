@@ -28,16 +28,47 @@
                 $total = 0;
                 $subtotal = 0;
                 $totales = [];
+                $ValidarCobro=array();
+                
                 foreach($this->mesas as $row){
                     $mesa = new Mesa();
                     $mesa = $row;
                     $contador = 1;
+
+                    //Valida COBRAR MESA/////////////////////////////////////////////////////////////////////
+
+                    $idMesa=$mesa->id_mesa;
+                    $cont=0;
                     
+                    foreach($this->pedidos as $row){
+                        $pedido = new Pedido();
+                        $pedido = $row;
+                        $Id=$pedido->id_pedido;  
+                        $es=$pedido->id_estado;    
+                        if($pedido->id_mesa == $mesa->id_mesa){
+                            if($es!=4){
+                                $reemplazo=array($idMesa=>0);
+                                $ValidarCobro=array_replace($ValidarCobro,$reemplazo);
+                                $cont++;
+                                }
+                                if($es == 4 && $cont ==0 ){
+                        
+                                    $reemplazo=array($idMesa=>1);
+                                    $ValidarCobro=array_replace($ValidarCobro,$reemplazo);
+
+                                }                          
+                            }                          
+                    }
+                        
+                    
+                    $ValidarcobroJSON = json_encode($ValidarCobro);
+                    ///////////////////////////////////////////////////////////////////////////////////////
+
                     echo "<tr>
                         <td>N MESA $mesa->id_mesa</td>                     
                         <td><input type='button' onclick=CobrarMesa($mesa->id_mesa) value='COBRAR MESA'/></td>
                         <td><input type='button' value='SE SOLICITA MOZO'/></td>
-
+                    
                         </tr>";
                     echo "<tr>
                         <td>N PEDIDO</td>                     
@@ -50,11 +81,15 @@
                         <td>ESTA LISTO?</td>
                         <td>FECHA Y HORA</td>
                         </tr>";
+                            
                         foreach($this->pedidos as $row){
                             $pedido = new Pedido();
                             $pedido = $row;
                             $Id=$pedido->id_pedido;  
                             $es=$pedido->id_estado;
+                           
+                           
+
                             //calcula el monto total de los productos que estan en el mismo pedido                
                             foreach($this->productos as $row){
                                 $producto = new Producto();
@@ -76,6 +111,7 @@
                             
                             //imprime solamente los pedidos de la mesa
                             if($pedido->id_mesa == $mesa->id_mesa){
+
                                 
                                 if($pedido->id_subpedido == $contador){  
                                     $total = $total + $subtotal;                              
@@ -91,6 +127,9 @@
                                     <td>$pedido->fecha</td>
                                     <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
                                     </tr>";
+
+                                    
+                                   
                                 }
                                 else{
                                     $contador++;
@@ -108,14 +147,18 @@
                                     <td>$pedido->fecha</td>
                                     <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
                                     </tr>";
+
+                                    
                                 }   
                             }
                         }
                         $total = 0;        
-                }        
+                }
+                        
                 ?>
             </tbody>  
         </table>
+        
     </div>
     <br>
     <br>
@@ -204,12 +247,10 @@ location.reload(true);}
 location.reload(true);
 }
 
-
 function CobrarMesa(idmesa){
-
-//alert (idmesa);
-
-$.ajax({
+    let AR=<?php echo $ValidarcobroJSON; ?>;    
+    if(AR[idmesa]==1){
+        $.ajax({
             type: "POST",
              url: "../admin/cobrar_mesa",
             data: {IdMesa : idmesa},
@@ -221,10 +262,10 @@ $.ajax({
             success: function(data){
             alert("Se cobro la Mesa "+idmesa);
             }
-                        });
-location.reload(true);
+        });
+        location.reload(true);
+    }
 }
-
 
 
 </script>
