@@ -10,7 +10,10 @@
     table {border-collapse: collapse;}
     </style>
     <link rel="stylesheet" type="text/css" href="<?php echo constant('URL'); ?>public/css/style.css">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
+    
+    <script src="<?php echo constant('URL'); ?>public/js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 </head>
 <body>
     <a href="<?php echo constant('URL'); ?>admin"><input type="button" value="Volver"/></a>
@@ -66,7 +69,7 @@
 
                     echo "<tr>
                         <td>N MESA $mesa->id_mesa</td>                     
-                        <td><input type='button' onclick=CobrarMesa($mesa->id_mesa) value='COBRAR MESA'/></td>
+                        <td><input type='button' onclick=CobrarMesa($mesa->id_mesa,$ValidarcobroJSON) value='COBRAR MESA'/></td>
                         <td><input type='button' value='SE SOLICITA MOZO'/></td>
                     
                         </tr>";
@@ -197,75 +200,3 @@
     
 </body>
 </html>
-
-
-<script type="text/javascript">
-
-function TomarPedido(id,es){
-
-    
-    //alert(es);
-    if(es==1){
-        $.ajax({
-                type: "POST",
-                 url: "../admin/tomar_pedido",
-                data: {id_pedido : id},
-                dataType: "html",
-                beforeSend: function(){},
-                error: function(){
-                alert("error petición ajax");
-                                     },
-                success: function(data){
-                alert("Se tomo el pedido");}
-                            });
-
-    location.reload(true);
-    
-        }
-    location.reload(true);    
-}
-
-
-function EstaListoSiNo(id,es){
-    let datos=[id, es];
-    if (es==2){
-    $.ajax({
-            type: "POST",
-             url: "../admin/esta_listo",
-            data: {array_id_es : datos},
-            dataType: "html",
-            beforeSend: function(){},
-            error: function(){
-            alert("error petición ajax");
-                                 },
-            success: function(data){
-            //alert("Se tomo el pedido");
-            }
-                        });
-
-location.reload(true);}
-location.reload(true);
-}
-
-function CobrarMesa(idmesa){
-    let AR=<?php echo $ValidarcobroJSON; ?>;    
-    if(AR[idmesa]==1){
-        $.ajax({
-            type: "POST",
-             url: "../admin/cobrar_mesa",
-            data: {IdMesa : idmesa},
-            dataType: "html",
-            beforeSend: function(){},
-            error: function(){
-            alert("error petición ajax");
-                                 },
-            success: function(data){
-            alert("Se cobro la Mesa "+idmesa);
-            }
-        });
-        location.reload(true);
-    }
-}
-
-
-</script>

@@ -39,3 +39,67 @@ function fun_buscar_producto(id) {
                             });
     }
 
+function TomarPedido(id,es){
+        
+        if(es==1){
+            $.ajax({
+                    type: "POST",
+                     url: "../admin/tomar_pedido",
+                    data: {id_pedido : id},
+                    dataType: "html",
+                    beforeSend: function(){},
+                    error: function(){
+                    alert("error petición ajax");
+                                         },
+                    success: function(data){
+                    alert("Se tomo el pedido");}
+                                });
+    
+        location.reload(true);
+        
+            }
+        location.reload(true);    
+    }
+    
+function EstaListoSiNo(id,es){
+        let datos=[id, es];
+        if (es==2){
+            $.ajax({
+                    type: "POST",
+                     url: "../admin/esta_listo",
+                    data: {array_id_es : datos},
+                    dataType: "html",
+                    beforeSend: function(){},
+                    error: function(){
+                    alert("error petición ajax");
+                                     },
+                    success: function(data){
+                    //alert("Se tomo el pedido");
+                    }
+                            });
+    
+            location.reload(true);}
+            location.reload(true);
+    }
+
+function CobrarMesa(idmesa,ValidarcobroJSON){
+        
+        if(ValidarcobroJSON[idmesa]==1){
+            $.ajax({
+                type: "POST",
+                 url: "../admin/cobrar_mesa",
+                data: {IdMesa : idmesa},
+                dataType: "html",
+                beforeSend: function(){},
+                error: function(){
+                alert("error petición ajax");
+                                     },
+                success: function(data){
+                alert("Se cobro la Mesa "+idmesa);
+                }
+            });
+            location.reload(true);
+        }
+    }
+
+
