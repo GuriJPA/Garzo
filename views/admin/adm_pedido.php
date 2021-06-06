@@ -28,6 +28,7 @@
                 $total = 0;
                 $subtotal = 0;
                 $totales = [];
+                // recorrro todas las mesas
                 foreach($this->mesas as $row){
                     $mesa = new Mesa();
                     $mesa = $row;
@@ -50,22 +51,24 @@
                         <td>ESTA LISTO?</td>
                         <td>FECHA Y HORA</td>
                         </tr>";
+                        // recorro todos los pedidos
                         foreach($this->pedidos as $row){
                             $pedido = new Pedido();
                             $pedido = $row;
                             $Id=$pedido->id_pedido;  
                             $es=$pedido->id_estado;
-                            //calcula el monto total de los productos que estan en el mismo pedido                
+                            //calcula el monto total del producto que esta en el pedido
+                            //recorro todos los producto hasta que encuentro el que tiene la misma id                
                             foreach($this->productos as $row){
                                 $producto = new Producto();
                                 $producto = $row;
                                 
                                 if($producto->id_producto == $pedido->id_producto ){
                                     $precio = $producto->precio;
-                                    $subtotal= $precio*$pedido->cantidad;
-                                    
+                                    $subtotal= $precio*$pedido->cantidad;   // cargo la variable subtotal con el precio * cantidad
                                 }
                             }
+                            //recorro todos los estados para comparar con estado del pedido y guardar el nombre del estado
                             foreach($this->estados as $row){
                                 $estado = new Estado();
                                 $estado = $row;
@@ -108,11 +111,13 @@
                                     <td>$pedido->fecha</td>
                                     <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
                                     </tr>";
-                                }   
+                                }
+                                //array_push($totales, $total);   
                             }
                         }
+                        array_push($totales, $total); 
                         $total = 0;        
-                }        
+                } 
                 ?>
             </tbody>  
         </table>
@@ -120,37 +125,79 @@
     <br>
     <br>
     <div>
-        <table id='tabla_pedidos' style="border: 1px solid black;">
-            <thead>
-                <tr>
-                <th>N PEDIDO</th>
-                <th>ESTADO</th>
-                <th>TOTAL</th>
-                <th>TOMAR PEDIDO</th>
-                <th>ESTA LISTO?</th>                
-                <th>FECHA Y HORA</th>
-                </tr>
-            </thead>            
-            <tbody id='pedidos'>
+        <table id='tabla_mesas' style="border: 0px solid black;">
+            
+            <tbody id='mesas'>
                 <?php
+                include_once 'models/mesa.php';
                 include_once 'models/pedido.php';
-                foreach($this->pedidos as $row){
-                    $pedido = new Pedido();
-                    $pedido = $row; 
+                include_once 'models/producto.php';
+                include_once 'models/estado.php';
+                // recorrro todas las mesas
+                foreach($this->mesas as $row){
+                    $mesa = new Mesa();
+                    $mesa = $row;
+                    $contador = 1;
+                    $indice = 0;
+                    
                     echo "<tr>
-                        <td>$pedido->id_pedido</td>
-                        <td>$pedido->estado</td>
-                        <td>$pedido->cantidad</td>                        
-                        <td><input type='button' value='Tomar Pedido'/></td>
-                        <td><input type='button' value='Si/No'/></td>
-                        <td>$pedido->fecha</td>
-                        <td><input type='button' value='Detalle'/></td>
+                        <td>N MESA $mesa->id_mesa</td>                     
+                        <td><input type='button' value='COBRAR MESA'/></td>
+                        <td><input type='button' value='SE SOLICITA MOZO'/></td>
+
                         </tr>";
+                    echo "<tr>
+                        <td>N PEDIDO</td>                     
+                        <td>ESTADO</td>
+                        <td>TOTAL</td>
+                        <td>TOMAR PEDIDO</td>
+                        <td>ESTA LISTO?</td>
+                        <td>FECHA Y HORA</td>
+                        </tr>";
+                        // recorro todos los pedidos
+                        foreach($this->pedidos as $row){
+                            $pedido = new Pedido();
+                            $pedido = $row;
+                            
+                            //calcula el monto total del producto que esta en el pedido
+                            //recorro todos los producto hasta que encuentro el que tiene la misma id                
+                            foreach($this->productos as $row){
+                                $producto = new Producto();
+                                $producto = $row;
+                            }
+                            //recorro todos los estados para comparar con estado del pedido y guardar el nombre del estado
+                            foreach($this->estados as $row){
+                                $estado = new Estado();
+                                $estado = $row;
+                                if($estado->id_estado == $pedido->id_estado){
+                                    $estadoPedido = $estado->nombre;
+                                }
+                            }
+                            
+                            //imprime solamente los pedidos de la mesa
+                            if($pedido->id_mesa == $mesa->id_mesa){
+
+                                if($pedido->id_subpedido == $contador){  
+                                    echo "<tr>
+                                    <td>$pedido->id_subpedido</td>
+                                    <td>$estadoPedido</td>
+                                    <td>$ $totales[$indice]</td>                        
+                                    <td><input type='button' onclick= TomarPedido(id,$es) id= $Id value='Tomar Pedido'/></td>
+                                    <td><input type='button' onclick= EstaListoSiNo(id,$es) id=$Id value='Si/No'/></td>
+                                    <td>$pedido->fecha</td>
+                                    <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
+                                    </tr>";
+                                    $contador++;
+                                }
+                            }
+                            $indice ++;
+                        }      
                 }        
                 ?>
-            </tbody>
+            </tbody>  
         </table>
     </div>
+
     
 </body>
 </html>
