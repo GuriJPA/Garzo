@@ -15,6 +15,14 @@ class App{
         //echo empty($url[0]);
     
         // cuando se ingresa sin definir controlador
+        if(!(isset($_SESSION['id_matriz']))){
+            $_SESSION['id_matriz'] = 0;
+        }
+
+        if(!(isset($_SESSION['matriz_pedidos']))){
+            $_SESSION['matriz_pedidos'] = array();
+        }
+        
         if(empty($url[0])){
             $archivoController = 'controllers/main.php';
             require_once $archivoController;
