@@ -162,41 +162,7 @@
             </tbody>  
         </table>
         
-    </div>
-    <br>
-    <br>
-    <div>
-        <table id='tabla_pedidos' style="border: 1px solid black;">
-            <thead>
-                <tr>
-                <th>N PEDIDO</th>
-                <th>ESTADO</th>
-                <th>TOTAL</th>
-                <th>TOMAR PEDIDO</th>
-                <th>ESTA LISTO?</th>                
-                <th>FECHA Y HORA</th>
-                </tr>
-            </thead>            
-            <tbody id='pedidos'>
-                <?php
-                include_once 'models/pedido.php';
-                foreach($this->pedidos as $row){
-                    $pedido = new Pedido();
-                    $pedido = $row; 
-                    echo "<tr>
-                        <td>$pedido->id_pedido</td>
-                        <td>$pedido->estado</td>
-                        <td>$pedido->cantidad</td>                        
-                        <td><input type='button' value='Tomar Pedido'/></td>
-                        <td><input type='button' value='Si/No'/></td>
-                        <td>$pedido->fecha</td>
-                        <td><input type='button' value='Detalle'/></td>
-                        </tr>";
-                }        
-                ?>
-            </tbody>
-        </table>
-    </div>
+    
     
 </body>
 </html>
