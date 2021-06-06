@@ -180,7 +180,7 @@
                         
                     echo "<tr>
                         <td>N MESA $mesa->id_mesa</td>                     
-                        <td><input type='button' value='COBRAR MESA'/></td>
+                        <td><input type='button' onclick=CobrarMesa($mesa->id_mesa,$ValidarcobroJSON) value='COBRAR MESA'/></td>
                         <td><input type='button' value='SE SOLICITA MOZO'/></td>
                         </tr>";
                        
