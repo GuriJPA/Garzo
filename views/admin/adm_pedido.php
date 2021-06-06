@@ -158,6 +158,8 @@
                         foreach($this->pedidos as $row){
                             $pedido = new Pedido();
                             $pedido = $row;
+                            $Id=$pedido->id_pedido;  
+                            $es=$pedido->id_estado;
                             
                             //calcula el monto total del producto que esta en el pedido
                             //recorro todos los producto hasta que encuentro el que tiene la misma id                
