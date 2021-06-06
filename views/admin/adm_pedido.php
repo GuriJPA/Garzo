@@ -84,26 +84,24 @@
                         <td>ESTA LISTO?</td>
                         <td>FECHA Y HORA</td>
                         </tr>";
-                            
+                        // recorro todos los pedidos
                         foreach($this->pedidos as $row){
                             $pedido = new Pedido();
                             $pedido = $row;
                             $Id=$pedido->id_pedido;  
                             $es=$pedido->id_estado;
-                           
-                           
-
-                            //calcula el monto total de los productos que estan en el mismo pedido                
+                            //calcula el monto total del producto que esta en el pedido
+                            //recorro todos los producto hasta que encuentro el que tiene la misma id                
                             foreach($this->productos as $row){
                                 $producto = new Producto();
                                 $producto = $row;
                                 
                                 if($producto->id_producto == $pedido->id_producto ){
                                     $precio = $producto->precio;
-                                    $subtotal= $precio*$pedido->cantidad;
-                                    
+                                    $subtotal= $precio*$pedido->cantidad;   // cargo la variable subtotal con el precio * cantidad
                                 }
                             }
+                            //recorro todos los estados para comparar con estado del pedido y guardar el nombre del estado
                             foreach($this->estados as $row){
                                 $estado = new Estado();
                                 $estado = $row;
@@ -150,19 +148,97 @@
                                     <td>$pedido->fecha</td>
                                     <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
                                     </tr>";
-
-                                    
-                                }   
+                                }
+                                //array_push($totales, $total);   
                             }
                         }
+                        array_push($totales, $total); 
                         $total = 0;        
-                }
-                        
+                } 
                 ?>
             </tbody>  
         </table>
-        
-    
+    </div>
+    <br>
+    <br>
+    <div>
+        <table id='tabla_mesas' style="border: 0px solid black; cellspacing : 50px; ">
+            
+            <tbody id='mesas' style="cellspacing : 20px;">
+                <?php
+                include_once 'models/mesa.php';
+                include_once 'models/pedido.php';
+                include_once 'models/producto.php';
+                include_once 'models/estado.php';
+                // recorrro todas las mesas
+                $indice = 0;
+                foreach($this->mesas as $row){
+                    $mesa = new Mesa();
+                    $mesa = $row;
+                    $contador = 1;
+                    
+                        
+                    echo "<tr>
+                        <td>N MESA $mesa->id_mesa</td>                     
+                        <td><input type='button' value='COBRAR MESA'/></td>
+                        <td><input type='button' value='SE SOLICITA MOZO'/></td>
+                        </tr>";
+                       
+                    echo "<tr>
+                        <td>N PEDIDO</td>                     
+                        <td>ESTADO</td>
+                        <td>TOTAL</td>
+                        <td>TOMAR PEDIDO</td>
+                        <td>ESTA LISTO?</td>
+                        <td>FECHA Y HORA</td>
+                        </tr>";
+                        // recorro todos los pedidos
+                        foreach($this->pedidos as $row){
+                            $pedido = new Pedido();
+                            $pedido = $row;
+                            $Id=$pedido->id_pedido;  
+                            $es=$pedido->id_estado;
+                            
+                            //calcula el monto total del producto que esta en el pedido
+                            //recorro todos los producto hasta que encuentro el que tiene la misma id                
+                            foreach($this->productos as $row){
+                                $producto = new Producto();
+                                $producto = $row;
+                            }
+                            //recorro todos los estados para comparar con estado del pedido y guardar el nombre del estado
+                            foreach($this->estados as $row){
+                                $estado = new Estado();
+                                $estado = $row;
+                                if($estado->id_estado == $pedido->id_estado){
+                                    $estadoPedido = $estado->nombre;
+                                }
+                            }
+                            
+                            //imprime solamente los pedidos de la mesa
+                            if($pedido->id_mesa == $mesa->id_mesa){
+                                if($pedido->id_subpedido == $contador){
+                                      
+                                    echo "<tr>
+                                    <td>$pedido->id_subpedido</td>
+                                    <td>$estadoPedido</td>
+                                    <td>$ $totales[$indice]</td>                        
+                                    <td><input type='button' onclick= TomarPedido(id,$es) id= $Id value='Tomar Pedido'/></td>
+                                    <td><input type='button' onclick= EstaListoSiNo(id,$es) id=$Id value='Si/No'/></td>
+                                    <td>$pedido->fecha</td>
+                                    <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
+                                    </tr>";
+                                    $contador++;
+                                    $indice ++;
+                                }
+                            }
+                            
+                        }      
+                }        
+                ?>
+            </tbody>  
+        </table>
+    </div>
+
     
 </body>
 </html>
