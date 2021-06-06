@@ -35,16 +35,16 @@
                 if(isset($this->productos)){
                     while($i < sizeof($this->productos)){
                         echo"<tr>";
-                        while(!(isset($_SESSION['productos'][$j]))){
+                        while(!(isset($_SESSION ['matriz_pedidos'][$j]))){
                             $j++;
                         }
-                        echo "<td>".$_SESSION['productos'][$j][1]."</td>";
+                        echo "<td>".$_SESSION ['matriz_pedidos'][$j][1]."</td>";
                         echo "<td>".$this->productos[$i][0]->nombre."</td>";
                         echo "<td>$".$this->productos[$i][0]->precio."</td>";
                         echo "<td></td>";
                         echo "<td><button onclick='eliminar_prod_pedido($j)'>Eliminar</button></td>";
                         echo "</tr>";
-                        $total = $total + ($this->productos[$i][0]->precio)*($_SESSION['productos'][$j][1]);
+                        $total = $total + ($this->productos[$i][0]->precio)*($_SESSION ['matriz_pedidos'][$j][1]);
                         $j++;
                         $i++;
                     }

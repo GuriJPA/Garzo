@@ -13,16 +13,23 @@ class App{
         //var_dump($url);
 
         //echo empty($url[0]);
+
+        session_start();
     
-        // cuando se ingresa sin definir controlador
+        
         if(!(isset($_SESSION['id_matriz']))){
             $_SESSION['id_matriz'] = 0;
+        }
+
+        if(!(isset($_SESSION['mesa']))){
+            $_SESSION['mesa'] = 1;
         }
 
         if(!(isset($_SESSION['matriz_pedidos']))){
             $_SESSION['matriz_pedidos'] = array();
         }
         
+        // cuando se ingresa sin definir controlador
         if(empty($url[0])){
             $archivoController = 'controllers/main.php';
             require_once $archivoController;
@@ -34,7 +41,6 @@ class App{
 
         $url_controller = $url[0];
         
-        session_start();
         
         if(!(isset($_SESSION['logueado']))){
             $_SESSION['logueado'] = FALSE;

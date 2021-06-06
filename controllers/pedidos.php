@@ -14,7 +14,7 @@ class Pedidos extends Controller{
 
         $this->consultar_productos();
 
-        //$this->view->$mensaje = $_SESSION['productos'];
+        //$this->view->$mensaje = $_SESSION ['matriz_pedidos'];
 
         $this->view->render('pedidos/index');
     }
@@ -39,11 +39,11 @@ class Pedidos extends Controller{
             //echo "Hay pedidos";
         }
 
-        if(isset($_SESSION['productos'])){
+        if(isset($_SESSION ['matriz_pedidos'])){
             $i=0;
             $j=0;
             $productos_a = [];
-            $producto_aux = $_SESSION['productos'];
+            $producto_aux = $_SESSION ['matriz_pedidos'];
             $this->loadModel('consulta_product');
             while($i < sizeof($producto_aux)){
                 while(!(isset($producto_aux[$j]))){
@@ -61,11 +61,11 @@ class Pedidos extends Controller{
 
 
     function eliminar_prod_pedido($param){
-        //var_dump($_SESSION['productos']);
-        unset( $_SESSION['productos'][$param[0]]);
+        //var_dump($_SESSION ['matriz_pedidos']);
+        unset( $_SESSION ['matriz_pedidos'][$param[0]]);
         $this->consultar_productos();
         //echo "<br>";
-        //var_dump($_SESSION['productos']);
+        //var_dump($_SESSION ['matriz_pedidos']);
         //echo "<br>";
         $this->view->render('pedidos/tabla_pedidos');
     }
@@ -76,22 +76,22 @@ class Pedidos extends Controller{
         $subpedido = $this->model->get_subpedido($_SESSION['mesa']);
         $i=0;
         $j=0;
-        while($i < sizeof($_SESSION['productos'])){
+        while($i < sizeof($_SESSION ['matriz_pedidos'])){
             
-            while(!(isset($_SESSION['productos'][$j]))){
+            while(!(isset($_SESSION ['matriz_pedidos'][$j]))){
                 $j++;
             }
 
-            $this->model->add_pedidos($_SESSION['productos'][$j][0],$_SESSION['productos'][$j][1],$_SESSION['mesa'],$subpedido);
+            $this->model->add_pedidos($_SESSION ['matriz_pedidos'][$j][0],$_SESSION ['matriz_pedidos'][$j][1],$_SESSION['mesa'],$subpedido);
 
             $j++;
             $i++;
         }
 
         //vaciar variable SESSION
-        unset($_SESSION['productos']);
+        unset($_SESSION ['matriz_pedidos']);
 
-        //error_log('tamano SESSION productos: '.sizeof($_SESSION['productos']));
+        //error_log('tamano SESSION productos: '.sizeof($_SESSION ['matriz_pedidos']));
 
         
 
