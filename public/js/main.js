@@ -251,3 +251,49 @@ function CobrarMesa(idmesa,ValidarcobroJSON){
     }
 
 
+    function eliminar_prod_pedido(id) {
+        $.ajax({
+                                   type: "POST",
+                                   url: "pedidos/eliminar_prod_pedido/"+id,
+                                   data: "b="+id,
+                                   dataType: "html",
+                                   beforeSend: function(){
+                                              //imagen de carga
+                                           $("#tabla_pedidos").html("<p align='center'><img src='public/img/ajax-loader.gif' /></p>");
+                                   },
+                                   error: function(){
+                                           alert("error petición ajax");
+                                     },
+                                  success: function(data){                                                    
+                                        $("#tabla_pedidos").empty();
+                                        $("#tabla_pedidos").append(data);      
+                                    }
+                            });                     
+    }
+    
+    function hacer_pedido(){
+        $.ajax({
+                            type: "POST",
+                            url: "pedidos/hacer_pedido/",
+                            data: "b=",
+                            dataType: "html",
+                            beforeSend: function(){
+                                    //imagen de carga
+                                    $("#tabla_pedidos").html("<p align='center'><img src='public/img/ajax-loader.gif' /></p>");
+                            },
+                            error: function(){
+                                    alert("error petición ajax");
+                            },
+                        success: function(data){                                                    
+                                $("#tabla_pedidos").empty();
+                                $("#tabla_pedidos").append(data);      
+                            }
+        });
+    }
+    
+    
+    
+    
+    
+
+
