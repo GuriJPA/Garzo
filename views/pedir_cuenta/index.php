@@ -14,14 +14,17 @@
         <br>
         <h1><p style="font-family:Arial;">Se ha solicitado la cuenta exitosamente</p></h1>
         <br>
-        <p style="font-family:Arial;">Numero de Comprobante:</p>
+        <p style="font-family:Arial;">Numero de Comprobante: <?php echo $this->num_comprobante;?></p>
         <br>
         <a href="<?php echo constant('URL'); ?>"><input type="button" value="Hecho"/></a>
         <br>
         <br>
-        <a href=""><input type="button" value="Descargar Comprobante"/></a>
+        <button onclick="generar_comprobante('<?php echo $this->num_comprobante;?>')">Descargar Comprobante</button>
     </center>
     </div>
+    <script src="<?php echo constant('URL'); ?>public/js/main.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
     <?php require 'views/footer.php'; ?>
 </body>
 </html>

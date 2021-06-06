@@ -291,9 +291,7 @@ function CobrarMesa(idmesa,ValidarcobroJSON){
         });
     }
     
-    
-    
-    
-    
 
-
+    function generar_comprobante(num_comprobante) {
+        window.location.replace("pedir_cuenta/cuenta_pdf/"+num_comprobante);
+    }
