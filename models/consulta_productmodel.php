@@ -6,26 +6,19 @@ class Consulta_ProductModel extends Model{
 
     public function __construct(){
         parent::__construct();
-        //echo "<p>Nuevo controlador consulta_productmodel.php</p>";
     }
 
-    
-    // vamos a consultar la base de datos y traer todo 
     public function get_productos($cat_param){
-        // creo un array donde voy a ir guardando todo
         $items = [];
 
         try{
-            // si categoria producto es vacio, traigo todo
+
             if($cat_param == ''){
                 $query = $this->db->connect()->query("SELECT*FROM producto");
-            }else{ // si no existe traigo solamente lo que diga categoria
+            }else{
                 $query = $this->db->connect()->query("SELECT*FROM producto WHERE categoria='$cat_param'");
             }
-
             
-            
-            // recorro todo lo que traje filtrado que tengo en query
             while($row = $query->fetch()){
                 $item = new Producto();
                 $item->id_producto = $row['id_producto'];
@@ -45,7 +38,7 @@ class Consulta_ProductModel extends Model{
             
         }
     }
-
+//                         es el ID del objeto              
     public function get_producto($id_param){
         $items = [];
 
@@ -54,7 +47,7 @@ class Consulta_ProductModel extends Model{
             $query = $this->db->connect()->query("SELECT * FROM producto WHERE id_producto='$id_param'");
 
             while($row = $query->fetch()){
-                $item = new Producto();
+                $item = new Producto(); //crea el objeto y captura los datos de la BD
                 $item->id_producto = $row['id_producto'];
                 $item->nombre = $row['nombre'];
                 $item->descripcion  = $row['descripcion'];
@@ -71,8 +64,64 @@ class Consulta_ProductModel extends Model{
             return [];
             
         } 
+    }  
+
+    public function update($item){
+        $query = $this->db->connect()-> prepare("UPDATE producto SET nombre = :nombre, descripcion = :descripcion, precio = :precio, foto = :foto , stock = :stock, categoria = :categoria WHERE id_producto = :id_producto");
+        try{
+            $query->execute([
+                'id_producto'=> $item['id_producto'], //'id_producto' 
+                'nombre'     => $item['nombre'], //seteamos 'nombre' q es la columna d la BD, con lo que sacamos del vector $item['nombre']
+                'descripcion'=> $item['descripcion'],
+                'precio'     => $item['precio'],
+                'foto'       => $item['foto'],
+                'stock'      => $item['stock'],
+                'categoria'  => $item['categoria']
+            ]);
+            return true;
+        }catch(PDOException $e){
+            echo $e;
+            return false;
+           
+        }   
+
     }
+    
+    public function add($item){
+    $query = $this->db->connect()-> prepare("INSERT INTO producto (id_producto, nombre, descripcion, precio, foto, stock, categoria) VALUES (:id_producto, :nombre, :descripcion, :precio, :foto , :stock, :categoria)");
+    try{
+    $query->execute([
+    'id_producto'=> $item['id_producto'], //'id_producto' 
+    'nombre'     => $item['nombre'], //seteamos 'nombre' q es la columna d la BD, con lo que sacamos del vector $item['nombre']
+    'descripcion'=> $item['descripcion'],
+    'precio'     => $item['precio'],
+    'foto'       => $item['foto'],
+    'stock'      => $item['stock'],
+    'categoria'  => $item['categoria']
+    ]);
+    return true;
+    }catch(PDOException $e){
+    echo $e;
+    return false;
+
+}   
 
 }
 
+
+    public function delete_producto($id_param){
+      echo "<p>Ejecutaste el método delete_producto</p>";
+      echo $id_param;
+        
+        try{
+            $query = $this->db->connect()->query("DELETE FROM producto WHERE id_producto='$id_param'");
+            return true;
+        }catch(PDOException $e){
+            echo $e;
+            return false;
+        } 
+    }  
+            
+
+}
 ?>
