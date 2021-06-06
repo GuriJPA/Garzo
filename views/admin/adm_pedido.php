@@ -125,27 +125,28 @@
     <br>
     <br>
     <div>
-        <table id='tabla_mesas' style="border: 0px solid black;">
+        <table id='tabla_mesas' style="border: 0px solid black; cellspacing : 50px; ">
             
-            <tbody id='mesas'>
+            <tbody id='mesas' style="cellspacing : 20px;">
                 <?php
                 include_once 'models/mesa.php';
                 include_once 'models/pedido.php';
                 include_once 'models/producto.php';
                 include_once 'models/estado.php';
                 // recorrro todas las mesas
+                $indice = 0;
                 foreach($this->mesas as $row){
                     $mesa = new Mesa();
                     $mesa = $row;
                     $contador = 1;
-                    $indice = 0;
                     
+                        
                     echo "<tr>
                         <td>N MESA $mesa->id_mesa</td>                     
                         <td><input type='button' value='COBRAR MESA'/></td>
                         <td><input type='button' value='SE SOLICITA MOZO'/></td>
-
                         </tr>";
+                       
                     echo "<tr>
                         <td>N PEDIDO</td>                     
                         <td>ESTADO</td>
@@ -178,8 +179,8 @@
                             
                             //imprime solamente los pedidos de la mesa
                             if($pedido->id_mesa == $mesa->id_mesa){
-
-                                if($pedido->id_subpedido == $contador){  
+                                if($pedido->id_subpedido == $contador){
+                                      
                                     echo "<tr>
                                     <td>$pedido->id_subpedido</td>
                                     <td>$estadoPedido</td>
@@ -190,9 +191,10 @@
                                     <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
                                     </tr>";
                                     $contador++;
+                                    $indice ++;
                                 }
                             }
-                            $indice ++;
+                            
                         }      
                 }        
                 ?>
