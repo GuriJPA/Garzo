@@ -45,17 +45,24 @@
                 }
 
                 $i=0;
-                
-                while($i < sizeof($this->productos)){
-                    echo"<tr>";
-                    echo "<td>".$_SESSION ['matriz_pedidos'][$i][1]."</td>";
-                    echo "<td>".$this->productos[$i][0]->nombre."</td>";
-                    echo "<td>$".$this->productos[$i][0]->precio."</td>";
-                    echo "<td></td>";
-                    echo "<td><button onclick='eliminar_prod_pedido($i)'>Eliminar</button></td>";
-                    echo "</tr>";
-                    $total = $total + ($this->productos[$i][0]->precio)*($_SESSION ['matriz_pedidos'][$i][1]);
-                    $i++;
+                $j=0;
+                if(isset($this->productos)){
+                    while($i < sizeof($this->productos)){
+                        echo"<tr>";
+                        while(!(isset($this->productos[$j]))){
+                            $j++;
+                        }
+                        echo "<td>".$this->productos[$j][1]."</td>";
+                        $item = $this->productos[$j][0];
+                        echo "<td>".$item[0]->nombre."</td>";
+                        echo "<td>$".$item[0]->precio."</td>";
+                        echo "<td></td>";
+                        echo "<td><button onclick='eliminar_prod_pedido($j)'>Eliminar</button></td>";
+                        echo "</tr>";
+                        $total = $total + ($item[0]->precio)*($this->productos[$j][1]);
+                        $j++;
+                        $i++;
+                    }
                 }
 
                 ?>
