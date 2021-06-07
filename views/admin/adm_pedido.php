@@ -15,7 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
 </head>
-<body>
+<body onLoad="redireccionar()">
     <a href="<?php echo constant('URL'); ?>admin"><input type="button" value="Volver"/></a>
     <br>
     <br>
@@ -242,3 +242,8 @@
     
 </body>
 </html>
+<script language="JavaScript">
+  function redireccionar() {
+    setTimeout("document.location.reload()", 30000);
+  }
+  </script>
