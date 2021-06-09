@@ -51,6 +51,7 @@
                         <td><input type='button' onclick='fun_detalle_producto($producto->id_producto)' value='Editar'/></td>
                         <td><input type='button' onclick='fun_confirmacion($producto->id_producto)' value='Eliminar'/></td>
                         </tr>";
+
                 } 
                 
                 

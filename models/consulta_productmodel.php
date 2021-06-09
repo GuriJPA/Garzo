@@ -99,8 +99,9 @@ class Consulta_ProductModel extends Model{
     'stock'      => $item['stock'],
     'categoria'  => $item['categoria']
     ]);
+
     return true;
-    }catch(PDOException $e){
+   }catch(PDOException $e){
     echo $e;
     return false;
 

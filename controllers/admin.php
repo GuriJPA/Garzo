@@ -12,7 +12,7 @@ class Admin extends Controller{
     }
 
     function saludo(){
-        echo "<p>Ejecutaste el método Saludo desde Admin</p>";
+        echo "<p>Ejecutaste el método Saludooooooo desde Admin</p>";
     }
 
     function adm_product(){
@@ -37,7 +37,7 @@ class Admin extends Controller{
         $this->loadModel('consulta_product');//ver!!!!
         $producto = $this->model->get_producto($param[0]);
         $this->view->producto = $producto;
-        $this->view->render('admin/login/editar');
+        $this->view->render('admin/editar');
     }
 
     function actualizar_producto(){
@@ -57,13 +57,14 @@ class Admin extends Controller{
         $this->loadModel('consulta_product');
         $producto = $this->model->get_producto($param[0]);
         $this->view->producto = $producto;
-        $this->view->render('admin/login/eliminar');
+        $this->view->render('admin/eliminar');
     }
 
     function eliminar_producto($param){
         echo "<p>Ejecutaste el método eliminar_producto</p>";
         $this->loadModel('consulta_product');
         $this->model->delete_producto($param[0]);
+
     }
 
     function agregar_producto(){
@@ -77,6 +78,7 @@ class Admin extends Controller{
                               'stock'       => $Producto[5], 
                               'categoria'   => $Producto[6]
         ]);
+
     }
 
     function adm_pedido(){
