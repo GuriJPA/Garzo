@@ -42,14 +42,15 @@ class Pedidos extends Controller{
         if(isset($_SESSION ['matriz_pedidos'])){
             $i=0;
             $j=0;
-            $productos_a = [];
+            $productos_a = $_SESSION ['matriz_pedidos'];
             $producto_aux = $_SESSION ['matriz_pedidos'];
             $this->loadModel('consulta_product');
             while($i < sizeof($producto_aux)){
                 while(!(isset($producto_aux[$j]))){
                     $j++;
                 }
-                array_push($productos_a, $this->model->get_producto($producto_aux[$j][0]));
+                //array_push($productos_a, $this->model->get_producto($producto_aux[$j][0]));
+                $productos_a[$j][0] = $this->model->get_producto($producto_aux[$j][0]);
                 $j++;
                 $i++;
             }
@@ -90,6 +91,7 @@ class Pedidos extends Controller{
 
         //vaciar variable SESSION
         unset($_SESSION ['matriz_pedidos']);
+        unset($_SESSION['id_matriz']);
 
         //error_log('tamano SESSION productos: '.sizeof($_SESSION ['matriz_pedidos']));
 
