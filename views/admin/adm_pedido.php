@@ -126,7 +126,7 @@
                                     <td><input type='button' onclick= TomarPedido(id,$es) id= $Id value='Tomar Pedido'/></td>
                                     <td><input type='button' onclick= EstaListoSiNo(id,$es) id=$Id value='Si/No'/></td>
                                     <td>$pedido->fecha</td>
-                                    <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
+                                    <td><input type='button' onclick=fun_detalle_pedido($pedido->id_subpedido,$idMesa) id='Detalle' value='Detalle'/></td>
                                     </tr>";
 
                                     
@@ -146,7 +146,7 @@
                                     <td><input type='button' onclick= TomarPedido(id,$es) id= $Id value='Tomar Pedido'/></td>
                                     <td><input type='button' onclick= EstaListoSiNo(id,$es) id=$Id value='Si/No'/></td>
                                     <td>$pedido->fecha</td>
-                                    <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
+                                    <td><input type='button' onclick= fun_detalle_pedido($pedido->id_subpedido,$idMesa) id='Detalle' value='Detalle'/></td>
                                     </tr>";
                                 }
                                 //array_push($totales, $total);   
@@ -166,10 +166,7 @@
             
             <tbody id='mesas' style="cellspacing : 20px;">
                 <?php
-                include_once 'models/mesa.php';
-                include_once 'models/pedido.php';
-                include_once 'models/producto.php';
-                include_once 'models/estado.php';
+                
                 // recorrro todas las mesas
                 $indice = 0;
                 foreach($this->mesas as $row){
@@ -225,7 +222,7 @@
                                     <td><input type='button' onclick= TomarPedido(id,$es) id= $Id value='Tomar Pedido'/></td>
                                     <td><input type='button' onclick= EstaListoSiNo(id,$es) id=$Id value='Si/No'/></td>
                                     <td>$pedido->fecha</td>
-                                    <td><input type='button' onclick= id='Detalle' value='Detalle'/></td>
+                                    <td><input type='button' onclick= fun_detalle_pedido($pedido->id_subpedido,$mesa->id_mesa) id='Detalle' value='Detalle'/></td>
                                     </tr>";
                                     $contador++;
                                     $indice ++;
@@ -237,6 +234,13 @@
                 ?>
             </tbody>  
         </table>
+    </div>
+
+    <div id='detalle' class='div_emergente'>
+        <div id='datos' class='ventana_emergente'>
+        <button  type='submit' onclick='cancelar_detalle_pedido()' class='btn_x' >X</button>
+            <div id="detalle_aux" class='form-group' align='center'></div>
+        </div>
     </div>
 
     

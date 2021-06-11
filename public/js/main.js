@@ -295,3 +295,35 @@ function CobrarMesa(idmesa,ValidarcobroJSON){
     function generar_comprobante(num_comprobante) {
         window.location.replace("pedir_cuenta/cuenta_pdf/"+num_comprobante);
     }
+
+
+    function fun_detalle_pedido(idSubpedido,idmesa) {
+        let datos=[idSubpedido,idmesa];
+        div_continuar = document.getElementById('detalle').style.display = 'flex';
+        $.ajax({
+                                   type: "POST",
+                                   url: "../admin/adm_pedido_detalle/",
+                                   
+                                   data: {'array': JSON.stringify(datos)},
+                                   dataType: "html",
+                                   beforeSend: function(){
+                                              //imagen de carga modificacion
+                                           $("#detalle_aux").html("<p align='center'><img src='../../public/img/ajax-loader.gif' /></p>");
+                                   },
+                                   error: function(){
+                                           alert("error petición ajax");
+                                     },
+                                  success: function(data){
+                                    
+                                        $("#detalle_aux").empty();
+                                        $("#detalle_aux").append(data);
+                                            
+                                    }
+                            });
+                            
+    }
+
+    function cancelar_detalle_pedido() {
+        div_continuar = document.getElementById('detalle').style.display = 'none';
+    }
+    

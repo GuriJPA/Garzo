@@ -126,5 +126,27 @@ class Admin extends Controller{
 
 
 
+    function adm_pedido_detalle(){
+        $data = json_decode($_POST['array']);
+        
+        $this->loadModel('consulta_pedido');
+        $pedidos = $this->model->get_pedidos('');//traigo los pedidos que tengan el id_mesa pasado
+        $this->view->pedidos = $pedidos;
+
+        $this->loadModel('consulta_product');
+        $productos = $this->model->get_productos('');
+        $this->view->productos = $productos;
+        $this->view->subPedido=$data[0];
+        $this->view->mesa = $data[1];
+        
+        
+        //var_dump($data);
+        
+        
+            
+            $this->view->render('admin/detalle_pedido');
+        }
+
+
 }
 
