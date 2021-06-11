@@ -102,7 +102,7 @@
         </div>
     </div> 
 
-   
+   <div id='div_aux'> </div>
      
     <div id='modif_producto' class='div_emergente' >
         <div id='datos' class='ventana_emergente' >

@@ -38,7 +38,16 @@ class Admin extends Controller{
         $producto = $this->model->get_producto($param[0]);
         $this->view->producto = $producto;
         $this->view->render('admin/editar'); 
+
+
     }
+    function actualizar_tabla(){
+        $this->loadModel('consulta_product');
+        $productos = $this->model->get_productos('');
+        $this->view->productos = $productos;
+        $this->view->render('admin/tabla_principal');
+    }
+
 
     function actualizar_producto(){
         $Producto = $_POST['ProductoArray'];//lo que recibe del .ajax el array con los datos del producto
@@ -51,6 +60,7 @@ class Admin extends Controller{
                               'stock'       => $Producto[5], 
                               'categoria'   => $Producto[6]
         ]);
+        $this->actualizar_tabla();
     }
 
     function confirmacion($param){
@@ -58,12 +68,15 @@ class Admin extends Controller{
         $producto = $this->model->get_producto($param[0]);
         $this->view->producto = $producto;
         $this->view->render('admin/eliminar');
+
     }
 
     function eliminar_producto($param){
         echo "<p>Ejecutaste el método eliminar_producto</p>";
         $this->loadModel('consulta_product');
         $this->model->delete_producto($param[0]);
+        $this->actualizar_tabla();
+
 
     }
 
@@ -78,6 +91,7 @@ class Admin extends Controller{
                               'stock'       => $Producto[5], 
                               'categoria'   => $Producto[6]
         ]);
+        $this->actualizar_tabla();
 
     }
 

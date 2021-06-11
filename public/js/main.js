@@ -88,19 +88,17 @@ function fun_buscar_producto(id) {
                                    dataType: "html",
                                    beforeSend: function(){
                                               //imagen de carga modificacion
-                                              $("#div_aux").html("<p align='center'><img src='../../public/img/ajax-loader.gif' /></p>");
+                                              $("#tabla_principal").html("<p align='center'><img src='../../public/img/ajax-loader.gif' /></p>");
                                    },
                                    error: function(){
                                            alert("error petición ajax");
                                      },
                                   success: function(data){                                                    
-                                    $("#div_aux").empty();
-                                    $("#div_aux").append(data);
+                                    $("#tabla_principal").empty();
+                                    $("#tabla_principal").append(data);
                                     }
                             });
         
-        
-    
         
     }
     function fun_agreg_producto(){
@@ -124,17 +122,24 @@ function fun_buscar_producto(id) {
                                    dataType: "html",
                                    beforeSend: function(){
                                               //imagen de carga modificacion
-                                              $("#div_aux2").html("<p align='center'><img src='../../public/img/ajax-loader.gif' /></p>");
+                                              $("#tabla_principal").html("<p align='center'><img src='../../public/img/ajax-loader.gif' /></p>");
                                    },
                                    error: function(){
                                            alert("error petición ajax");
                                      },
                                   success: function(data){                                                    
-                                    $("#div_aux2").empty();
-                                    $("#div_aux2").append(data);
+                                    $("#tabla_principal").empty();
+                                    $("#tabla_principal").append(data);
                                     }
                             });
-        
+                             document.getElementById("id_agre").value="";
+                             document.getElementById("nombre_agre").value="";
+                             document.getElementById("descripcion_agre").value="";
+                             document.getElementById("precio_agre").value="";
+                             document.getElementById("foto_agre").value="";
+                             document.getElementById("stock_agre").value="";
+                             document.getElementById("categoria_agre").value="";
+                    
         
     
         
@@ -173,14 +178,14 @@ function fun_buscar_producto(id) {
                                    dataType: "html",
                                    beforeSend: function(){
                                               //imagen de carga modificacion
-                                           $("#div_aux2").html("<p align='center'><img src='../../public/img/ajax-loader.gif' /></p>");
+                                           $("#tabla_principal").html("<p align='center'><img src='../../public/img/ajax-loader.gif' /></p>");
                                    },
                                    error: function(){
                                            alert("error petición ajax");
                                      },
                                   success: function(data){                                                    
-                                        $("#div_aux2").empty();
-                                        $("#div_aux2").append(data);      
+                                        $("#tabla_principal").empty();
+                                        $("#tabla_principal").append(data);      
                                     }
                             });
     }
