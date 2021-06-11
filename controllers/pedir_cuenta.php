@@ -10,6 +10,14 @@ class Pedir_Cuenta extends Controller{
         parent::__construct();
         //echo "<p>Nuevo controlador Pedir_Cuenta</p>";
 
+        if(isset($_SESSION['id_matriz'])){
+            unset($_SESSION['id_matriz']);
+        }
+
+        if(isset($_SESSION['matriz_pedidos'])){
+            unset($_SESSION['matriz_pedidos']);
+        }
+
         $this->pedir_cuenta();
         $this->num_comprobante();
 
