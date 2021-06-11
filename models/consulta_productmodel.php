@@ -88,10 +88,10 @@ class Consulta_ProductModel extends Model{
     }
     
     public function add($item){
-    $query = $this->db->connect()-> prepare("INSERT INTO producto (id_producto, nombre, descripcion, precio, foto, stock, categoria) VALUES (:id_producto, :nombre, :descripcion, :precio, :foto , :stock, :categoria)");
+    $query = $this->db->connect()-> prepare("INSERT INTO producto (nombre, descripcion, precio, foto, stock, categoria) VALUES (:nombre, :descripcion, :precio, :foto , :stock, :categoria)");
     try{
     $query->execute([
-    'id_producto'=> $item['id_producto'], //'id_producto' 
+     
     'nombre'     => $item['nombre'], //seteamos 'nombre' q es la columna d la BD, con lo que sacamos del vector $item['nombre']
     'descripcion'=> $item['descripcion'],
     'precio'     => $item['precio'],

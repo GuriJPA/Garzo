@@ -83,8 +83,7 @@ class Admin extends Controller{
     function agregar_producto(){
         $Producto = $_POST['ProductoArray'];//lo que recibe del .ajax el array con los datos del producto
         $this->loadModel('consulta_product');
-        $this->model->add(['id_producto' => $Producto[0],//
-                              'nombre'      => $Producto[1],
+        $this->model->add([   'nombre'      => $Producto[1],
                               'descripcion' => $Producto[2],
                               'precio'      => $Producto[3], 
                               'foto'        => $Producto[4], 

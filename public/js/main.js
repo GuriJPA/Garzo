@@ -104,7 +104,6 @@ function fun_buscar_producto(id) {
     function fun_agreg_producto(){
          
         var producto = new Array();
-        producto[0] = document.getElementById("id_agre").value;
         producto[1] = document.getElementById("nombre_agre").value;
         producto[2] = document.getElementById("descripcion_agre").value;
         producto[3] = document.getElementById("precio_agre").value;
@@ -132,7 +131,6 @@ function fun_buscar_producto(id) {
                                     $("#tabla_principal").append(data);
                                     }
                             });
-                             document.getElementById("id_agre").value="";
                              document.getElementById("nombre_agre").value="";
                              document.getElementById("descripcion_agre").value="";
                              document.getElementById("precio_agre").value="";

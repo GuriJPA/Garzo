@@ -69,9 +69,6 @@
             <div  class='form-group' align='center'>
                 <h2>Agregar Producto</h2>
                 <br>
-                <a>Id</a>
-                <input type="text" class="input" id="id_agre">
-                <br>
                 <a>Nombre</a>
                 <input type="text" class="input" id="nombre_agre">
                 <br>
