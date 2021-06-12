@@ -23,5 +23,18 @@ class Consulta_EstadoModel extends Model{
             return [];
         }
     }
+    // retorna el nonbre de un estado especifico
+    /*public function get_estado($idestado){
+        $data = [];
+        try{
+            $query = $this->db->connect()->query("SELECT*FROM estados WHERE id_estado='$idestado'");
+            while($row = $query->fetch()){
+                $item = new Estado();
+                $item->nombre = $row['nombre'];
+                array_push($data, $item);
+        }
+        return $data;
+
+    }*/
 }
 ?>
