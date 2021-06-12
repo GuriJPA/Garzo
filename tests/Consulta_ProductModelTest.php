@@ -30,6 +30,6 @@ class Consulta_ProductModelTest extends TestCase
             array_push($items, $item);
         
         $this->assertEquals($items, $this->cp->get_producto(5));
-    }
+    }    
 
 }

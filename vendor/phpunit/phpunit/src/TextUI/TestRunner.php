@@ -880,8 +880,8 @@ final class TestRunner extends BaseTestRunner
     }
 
     /**
-     * @throws \PHPUnit\TextUI\XmlConfiguration\Exception
      * @throws Exception
+     * @throws \PHPUnit\TextUI\XmlConfiguration\Exception
      */
     private function handleConfiguration(array &$arguments): void
     {
