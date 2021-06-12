@@ -63,7 +63,12 @@ class Pedidos extends Controller{
 
     function eliminar_prod_pedido($param){
         //var_dump($_SESSION ['matriz_pedidos']);
-        unset( $_SESSION ['matriz_pedidos'][$param[0]]);
+        foreach($param as $item){
+            error_log($item);
+            unset( $_SESSION ['matriz_pedidos'][$item]);
+        }
+
+        //unset( $_SESSION ['matriz_pedidos'][$param[0]]);
         $this->consultar_productos();
         //echo "<br>";
         //var_dump($_SESSION ['matriz_pedidos']);

@@ -330,3 +330,22 @@ function CobrarMesa(idmesa,ValidarcobroJSON){
         div_continuar = document.getElementById('detalle').style.display = 'none';
     }
     
+    function eliminar_prod_selec(){
+
+        if(num_prod_ch != 0){
+            let ids ="";
+            
+            for (let i = 0; i < num_prod_ch; i++) {
+                if(document.getElementById(i).checked){
+                    ids=ids+"/"+document.getElementById(i).name;
+                }
+            }
+
+            ids = ids.replace(/^./, ""); //elimino el primer caracter que es una /
+
+            eliminar_prod_pedido(ids);
+        }
+
+        
+
+    }
