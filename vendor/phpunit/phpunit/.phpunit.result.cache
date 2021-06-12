@@ -1,1 +1,1 @@
-C:37:"PHPUnit\Runner\DefaultTestResultCache":104:{a:2:{s:7:"defects";a:0:{}s:5:"times";a:1:{s:44:"Consulta_ProductModelTest::test_get_producto";d:0.013;}}}
+C:37:"PHPUnit\Runner\DefaultTestResultCache":216:{a:2:{s:7:"defects";a:1:{s:42:"Consulta_PedidoModelTest::test_get_pedidos";i:3;}s:5:"times";a:2:{s:44:"Consulta_ProductModelTest::test_get_producto";d:0.002;s:42:"Consulta_PedidoModelTest::test_get_pedidos";d:0.013;}}}

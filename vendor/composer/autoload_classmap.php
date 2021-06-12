@@ -16,6 +16,7 @@ return array(
     'Consulta_EstadoModel' => $baseDir . '/models/consulta_estadomodel.php',
     'Consulta_MesaModel' => $baseDir . '/models/consulta_mesamodel.php',
     'Consulta_PedidoModel' => $baseDir . '/models/consulta_pedidomodel.php',
+    'Consulta_PedidoModelTest' => $baseDir . '/tests/Consulta_PedidoModelTest.php',
     'Consulta_ProductModel' => $baseDir . '/models/consulta_productmodel.php',
     'Consulta_ProductModelTest' => $baseDir . '/tests/Consulta_ProductModelTest.php',
     'Controller' => $baseDir . '/libs/controller.php',
