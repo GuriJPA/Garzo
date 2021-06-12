@@ -19,8 +19,8 @@ class Consulta_EstadoModelTest extends TestCase
         $items = [];
             
                 $item = new Estado();
-                $item->$id_estado = 1;
-                $item->$nombre = 'Pendiente a Tomar';
+                $item->$id_estado = 2;
+                $item->$nombre = 'ASD';
                 array_push($items, $item);
 
                 $item1 = new Estado();
