@@ -14,22 +14,32 @@ class Consulta_MesaModel extends Model{
             $query = $this->db->connect()->query("SELECT*FROM mesa");
             while($row = $query->fetch()){
                 $item = new Mesa();
-                /*$item->id_pedido = $row['id_pedido'];
-                $item->id_subpedido = $row['id_subpedido'];
-                $item->id_producto = $row['id_producto'];
-                $item->cantidad  = $row['cantidad'];
-                $item->fecha = $row['fecha'];
-                $item->id_mesa    = $row['id_mesa'];
-                $item->id_restaurante  = $row['id_restaurante'];
-                $item->estado  = $row['id_estado'];*/
                 $item->id_mesa = $row['id_mesa'];
                 $item->numeroMesa = $row['numeroMesa'];
+                $item->pidioMozo = $row['pidioMozo'];
                 array_push($items, $item);
         }
         return $items;
         }catch(PDOException $e){
             return [];
         }
+    }
+
+    public function set_pidio_mozo($param, $mozo){
+        
+        try{
+            if($mozo==1){
+            $query = $this->db->connect()->query("UPDATE mesa SET pidioMozo = 0 WHERE id_mesa= '$param'");
+             return null;
+            }
+            else{
+                $query = $this->db->connect()->query("UPDATE mesa SET pidioMozo = 1 WHERE id_mesa= '$param'");
+                return null; 
+            }
+         }catch(PDOException $e){
+             return [];
+             
+         } 
     }
 }
 ?>

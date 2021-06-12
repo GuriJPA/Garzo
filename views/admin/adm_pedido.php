@@ -10,7 +10,6 @@
     table {border-collapse: collapse;}
     </style>
     <link rel="stylesheet" type="text/css" href="<?php echo constant('URL'); ?>public/css/style.css">
-    
     <script src="<?php echo constant('URL'); ?>public/js/main.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
@@ -20,7 +19,7 @@
     <br>
     <br>
     <div>
-        <table id='tabla_mesas' style="border: 1px solid black;">
+        <table id='tabla_mesas'>
             
             <tbody id='mesas'>
                 <?php
@@ -67,7 +66,7 @@
                     $ValidarcobroJSON = json_encode($ValidarCobro);
                     ///////////////////////////////////////////////////////////////////////////////////////
 
-                    echo "<tr>
+                   /* echo "<tr>
                         <td>N MESA $mesa->id_mesa</td>                     
                         <td><input type='button' onclick=CobrarMesa($mesa->id_mesa,$ValidarcobroJSON) value='COBRAR MESA'/></td>
                         <td><input type='button' value='SE SOLICITA MOZO'/></td>
@@ -83,7 +82,7 @@
                         <td>TOMAR PEDIDO</td>
                         <td>ESTA LISTO?</td>
                         <td>FECHA Y HORA</td>
-                        </tr>";
+                        </tr>";*/
                         // recorro todos los pedidos
                         foreach($this->pedidos as $row){
                             $pedido = new Pedido();
@@ -116,7 +115,7 @@
                                 
                                 if($pedido->id_subpedido == $contador){  
                                     $total = $total + $subtotal;                              
-                                    echo "<tr>
+                                    /*echo "<tr>
                                     <td>$pedido->id_subpedido</td>
                                     <td>$estadoPedido</td>
                                     <td>$ $precio</td>
@@ -127,7 +126,7 @@
                                     <td><input type='button' onclick= EstaListoSiNo(id,$es) id=$Id value='Si/No'/></td>
                                     <td>$pedido->fecha</td>
                                     <td><input type='button' onclick=fun_detalle_pedido($pedido->id_subpedido,$idMesa) id='Detalle' value='Detalle'/></td>
-                                    </tr>";
+                                    </tr>";*/
 
                                     
                                    
@@ -136,7 +135,7 @@
                                     $contador++;
                                     array_push($totales, $total);
                                     $total = $subtotal;
-                                    echo "<tr>
+                                    /*echo "<tr>
                                     <td>$pedido->id_subpedido</td>
                                     <td>$estadoPedido</td>
                                     <td>$ $precio</td>
@@ -147,9 +146,8 @@
                                     <td><input type='button' onclick= EstaListoSiNo(id,$es) id=$Id value='Si/No'/></td>
                                     <td>$pedido->fecha</td>
                                     <td><input type='button' onclick= fun_detalle_pedido($pedido->id_subpedido,$idMesa) id='Detalle' value='Detalle'/></td>
-                                    </tr>";
+                                    </tr>";*/
                                 }
-                                //array_push($totales, $total);   
                             }
                         }
                         array_push($totales, $total); 
@@ -162,7 +160,7 @@
     <br>
     <br>
     <div>
-        <table id='tabla_mesas' style="border: 0px solid black; cellspacing : 50px; ">
+        <table id='tabla_mesas' style="border: 10px solid black; cellspacing : 100px; background: darkgray;">
             
             <tbody id='mesas' style="cellspacing : 20px;">
                 <?php
@@ -173,12 +171,14 @@
                     $mesa = new Mesa();
                     $mesa = $row;
                     $contador = 1;
+                    $pidioMozo = $mesa->pidioMozo;
+                    
                     
                         
                     echo "<tr>
                         <td>N MESA $mesa->id_mesa</td>                     
                         <td><input type='button' onclick=CobrarMesa($mesa->id_mesa,$ValidarcobroJSON) value='COBRAR MESA'/></td>
-                        <td><input type='button' value='SE SOLICITA MOZO'/></td>
+                        <td><input type='button' onclick=pidioMozo($mesa->id_mesa,$pidioMozo) value='SE SOLICITA MOZO: $pidioMozo'/></td>
                         </tr>";
                        
                     echo "<tr>

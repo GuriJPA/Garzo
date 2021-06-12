@@ -160,6 +160,12 @@ class Admin extends Controller{
             $this->view->render('admin/detalle_pedido');
         }
 
+    function pidio_mozo(){
+        $data = $_POST['datos'];
+        $this->loadModel('consulta_mesa');
+        $this->model->set_pidio_mozo($data[0],$data[1]);
+    }
+
 
 }
 

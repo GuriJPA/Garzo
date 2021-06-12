@@ -329,4 +329,27 @@ function CobrarMesa(idmesa,ValidarcobroJSON){
     function cancelar_detalle_pedido() {
         div_continuar = document.getElementById('detalle').style.display = 'none';
     }
+
+    function pidioMozo(idmesa,mozo){
+        let id_mesa_mozo=[idmesa,mozo];
+        if(mozo==1){
+            $.ajax({
+                    type: "POST",
+                     url: "../admin/pidio_mozo",
+                    data: {datos : id_mesa_mozo},
+                    dataType: "html",
+                    beforeSend: function(){},
+                    error: function(){
+                    alert("error petición ajax");
+                                         },
+                    success: function(data){
+                    alert("Pedido de mozo atendido");}
+                                });
+    
+        location.reload(true);
+        
+            }
+        location.reload(true);    
+    }
+    
     

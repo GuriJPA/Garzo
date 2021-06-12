@@ -174,9 +174,7 @@ class Consulta_PedidoModel extends Model{
          }
  
      }
-
-
-   
+  
 
 }
 
