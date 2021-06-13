@@ -14,6 +14,7 @@ return array(
     'Composer\\Autoload\\ComposerStaticInitc73f2be106a49f8bd68ac203b703da42' => $vendorDir . '/composer/autoload_static.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Consulta_EstadoModel' => $baseDir . '/models/consulta_estadomodel.php',
+    'Consulta_EstadoModelTest' => $baseDir . '/tests/Consulta_EstadoModelTest.php',
     'Consulta_MesaModel' => $baseDir . '/models/consulta_mesamodel.php',
     'Consulta_PedidoModel' => $baseDir . '/models/consulta_pedidomodel.php',
     'Consulta_PedidoModelTest' => $baseDir . '/tests/Consulta_PedidoModelTest.php',

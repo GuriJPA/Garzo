@@ -74,6 +74,10 @@ class Consulta_PedidoModelTest extends TestCase
     
         }
         
+        public function test_get_subpedido(){
+            $this->cp->add_pedidos(1,2,2,2);
+            $this->assertEquals(1, $this->cp->get_subpedido(2));
+        }
 
 }
 

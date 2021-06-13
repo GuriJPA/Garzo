@@ -79,6 +79,7 @@ class ComposerStaticInitc73f2be106a49f8bd68ac203b703da42
         'Composer\\Autoload\\ComposerStaticInitc73f2be106a49f8bd68ac203b703da42' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Consulta_EstadoModel' => __DIR__ . '/../..' . '/models/consulta_estadomodel.php',
+        'Consulta_EstadoModelTest' => __DIR__ . '/../..' . '/tests/Consulta_EstadoModelTest.php',
         'Consulta_MesaModel' => __DIR__ . '/../..' . '/models/consulta_mesamodel.php',
         'Consulta_PedidoModel' => __DIR__ . '/../..' . '/models/consulta_pedidomodel.php',
         'Consulta_PedidoModelTest' => __DIR__ . '/../..' . '/tests/Consulta_PedidoModelTest.php',
