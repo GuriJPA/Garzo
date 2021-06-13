@@ -21,16 +21,16 @@ class Consulta_PedidoModelTest extends TestCase
     
             
                 $item = new Pedido();
-                $item->id_pedido = 5;
-                $item->id_subpedido = 2;
-                $item->id_producto = 4;
-                $item->cantidad  = 7;
+                $item->id_pedido = 1;
+                $item->id_subpedido = 1;
+                $item->id_producto = 1;
+                $item->cantidad  = 5;
                 $item->fecha='';
-                $item->id_mesa = 2;
+                $item->id_mesa = 3;
                 $item->id_restaurante = 1;
                 $item->id_estado  = 3;
                 array_push($items, $item);
-                $this->assertEquals($items, $this->cp->get_pedidos(2));
+                $this->assertEquals($items, $this->cp->get_pedidos(3));
             }
             
     public function test_set_estado_finalizado(){
@@ -38,13 +38,13 @@ class Consulta_PedidoModelTest extends TestCase
         $MesaPrin=[];
         $MesaPrin =new Pedido();
         //guardo los pedidos de la mesa 2
-        $MesaPrin=$this->cp->get_pedidos(9999);
+        $MesaPrin=$this->cp->get_pedidos(3);
         //modifico el pedido con el id 5 que esta en la mesa 2
         //$this->cp->set_estado_pidio_cuenta(5);
-        $this->cp->set_estado_finalizado(9999);
+        $this->cp->set_estado_finalizado(3);
         $MesaPrueb=[];
         $MesaPrueb =new Pedido();
-        $MesaPrueb=$this->cp->get_pedidos(9999);
+        $MesaPrueb=$this->cp->get_pedidos(3);
         
         //Vuelvo al estado anterior del pedido modificado en este test "PRECAUCION DE QUE EL ESTADO ANTERIOR A MODIFICAR NO ESTE EN EL ESTADO 1 (PENDIENTE A TOMAR)"//////// 
         foreach( $MesaPrin as $row){
@@ -67,6 +67,12 @@ class Consulta_PedidoModelTest extends TestCase
         }
         ////////////////////////////////////////////////////////////////////////
 
+
+        public function test_add_pedidos(){      
+     
+            $this->assertEquals(true, $this->cp->add_pedidos(1,2,2,2));
+    
+        }
         
 
 }
