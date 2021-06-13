@@ -79,6 +79,26 @@ class Consulta_PedidoModelTest extends TestCase
             $this->assertEquals(1, $this->cp->get_subpedido(2));
         }
 
+        public function test_set_estado_en_preparacion(){
+       
+        $this->assertEquals(true, $this->cp->set_estado_en_preparacion(1));
+        $this->cp->set_estado_listo(1);
+        }
+
+        public function test_set_estado_listo(){
+       
+            $this->assertEquals(true, $this->cp->set_estado_listo(1));
+            
+            }
+
+        public function test_set_estado_pidio_cuenta(){
+       
+            $this->assertEquals(true, $this->cp->set_estado_pidio_cuenta(1));
+            $this->cp->set_estado_listo(1);
+        }
+
+
+
 }
 
 ?>

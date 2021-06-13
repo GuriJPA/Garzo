@@ -50,9 +50,9 @@ class Consulta_PedidoModel extends Model{
         
         try{
            $query = $this->db->connect()->query("UPDATE pedido SET id_estado = '2' WHERE id_pedido= '$param'");
-            return null;
+            return true;
         }catch(PDOException $e){
-            return [];
+            return false;
             
         } 
     }
@@ -62,9 +62,9 @@ class Consulta_PedidoModel extends Model{
         
         try{
             $query = $this->db->connect()->query("UPDATE pedido SET id_estado = '3' WHERE id_pedido= '$param'");
-             return null;
+             return true;
          }catch(PDOException $e){
-             return [];
+             return false;
              
          } 
     }
@@ -74,9 +74,9 @@ class Consulta_PedidoModel extends Model{
         
         try{
             $query = $this->db->connect()->query("UPDATE pedido SET id_estado = '4' WHERE id_pedido= '$param'");
-             return null;
+             return true;
          }catch(PDOException $e){
-             return [];
+             return false;
              
          } 
     }
@@ -86,9 +86,9 @@ class Consulta_PedidoModel extends Model{
         
         try{
             $query = $this->db->connect()->query("UPDATE pedido SET id_estado = '5' WHERE id_mesa= '$param'");
-             return null;
+             return true;
          }catch(PDOException $e){
-             return [];
+             return false;
              
          } 
     }
