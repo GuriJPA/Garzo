@@ -6,7 +6,7 @@ require_once 'config/config.php';
 class Consulta_EstadoModelTest extends TestCase
 {
 
-    private $ce;
+    private $cp;
 
     public function setup(): void
     {
