@@ -38,13 +38,13 @@ class Consulta_PedidoModelTest extends TestCase
         $MesaPrin=[];
         $MesaPrin =new Pedido();
         //guardo los pedidos de la mesa 2
-        $MesaPrin=$this->cp->get_pedidos(2);
+        $MesaPrin=$this->cp->get_pedidos(9999);
         //modifico el pedido con el id 5 que esta en la mesa 2
-        $this->cp->set_estado_pidio_cuenta(5);
-        $this->cp->set_estado_finalizado(2);
+        //$this->cp->set_estado_pidio_cuenta(5);
+        $this->cp->set_estado_finalizado(9999);
         $MesaPrueb=[];
         $MesaPrueb =new Pedido();
-        $MesaPrueb=$this->cp->get_pedidos(1);
+        $MesaPrueb=$this->cp->get_pedidos(9999);
         
         //Vuelvo al estado anterior del pedido modificado en este test "PRECAUCION DE QUE EL ESTADO ANTERIOR A MODIFICAR NO ESTE EN EL ESTADO 1 (PENDIENTE A TOMAR)"//////// 
         foreach( $MesaPrin as $row){
