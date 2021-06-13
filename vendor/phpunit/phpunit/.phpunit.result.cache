@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 C:37:"PHPUnit\Runner\DefaultTestResultCache":500:{a:2:{s:7:"defects";a:4:{s:42:"Consulta_PedidoModelTest::test_get_pedidos";i:3;s:7:"Warning";i:6;s:42:"Consulta_EstadoModelTest::test_get_estados";i:4;s:52:"Consulta_PedidoModelTest::test_set_estado_finalizado";i:4;}s:5:"times";a:5:{s:44:"Consulta_ProductModelTest::test_get_producto";d:0.002;s:42:"Consulta_PedidoModelTest::test_get_pedidos";d:0.003;s:7:"Warning";d:0.005;s:42:"Consulta_EstadoModelTest::test_get_estados";d:0.012;s:52:"Consulta_PedidoModelTest::test_set_estado_finalizado";d:0.011;}}}
+=======
+C:37:"PHPUnit\Runner\DefaultTestResultCache":368:{a:2:{s:7:"defects";a:3:{s:42:"Consulta_PedidoModelTest::test_get_pedidos";i:3;s:7:"Warning";i:6;s:42:"Consulta_EstadoModelTest::test_get_estados";i:4;}s:5:"times";a:4:{s:44:"Consulta_ProductModelTest::test_get_producto";d:0.003;s:42:"Consulta_PedidoModelTest::test_get_pedidos";d:0.003;s:7:"Warning";d:0.005;s:42:"Consulta_EstadoModelTest::test_get_estados";d:0.015;}}}
+>>>>>>> b6d2fd3e05e927d7fb40f5c72cca71f114fdb594

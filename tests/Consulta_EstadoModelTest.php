@@ -6,7 +6,7 @@ require_once 'config/config.php';
 class Consulta_EstadoModelTest extends TestCase
 {
 
-    private $cp;
+    private $ce;
 
     public function setup(): void
     {
@@ -15,7 +15,6 @@ class Consulta_EstadoModelTest extends TestCase
 
     public function test_get_estados()
     {
-
         $items = [];
             
                 $item = new Estado();
@@ -44,8 +43,7 @@ class Consulta_EstadoModelTest extends TestCase
                 array_push($items, $item4);
 
                 $this->assertEquals($items, $this->cp->get_estados());
-            }
-            
+    }
             
         
 
