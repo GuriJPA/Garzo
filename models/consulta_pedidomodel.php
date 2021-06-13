@@ -21,7 +21,7 @@ class Consulta_PedidoModel extends Model{
             if($cat_param == ''){
                 $query = $this->db->connect()->query("SELECT*FROM pedido");
             }else{
-                $query = $this->db->connect()->query("SELECT*FROM pedido WHERE mesa='$cat_param'");
+                $query = $this->db->connect()->query("SELECT*FROM pedido WHERE id_mesa='$cat_param'");
             }
             
             while($row = $query->fetch()){

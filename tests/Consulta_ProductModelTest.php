@@ -30,6 +30,59 @@ class Consulta_ProductModelTest extends TestCase
             array_push($items, $item);
         
         $this->assertEquals($items, $this->cp->get_producto(5));
-    }    
+    }
+
+    public function test_get_productos()
+    {
+
+        $items = [];
+        
+            $item = new Producto();
+            $item2 = new Producto();
+            $item3 = new Producto();
+            $item4 = new Producto();
+            
+            $item->id_producto = 3;
+            $item->nombre    = 'hamburguesa doblee';
+            $item->descripcion  = 'Descripcion: 2 medallones, queso, pan';
+            $item->precio = 349;
+            $item->foto    = '../../public/img/carta/burger/burger_1.jpg';
+            $item->stock  = 0;
+            $item->categoria  = 'hamburguesa';
+            array_push($items, $item);
+            
+            $item2->id_producto = 4;
+            $item2->nombre    = 'hamburguesa triplee';
+            $item2->descripcion  = 'Descripcion: 3 medallones, queso, pan';
+            $item2->precio = 400;
+            $item2->foto    = '../../public/img/carta/burger/burger_2.jpg';
+            $item2->stock  = 11;
+            $item2->categoria  = 'hamburguesa';
+            array_push($items, $item2);
+
+
+            $item3->id_producto = 5;
+            $item3->nombre    = 'hamburguesa premium';
+            $item3->descripcion  = 'descripcion premium';
+            $item3->precio = 500;
+            $item3->foto    = '../../public/img/carta/burger/burger_3.jpg';
+            $item3->stock  = 5;
+            $item3->categoria  = 'hamburguesa';
+            array_push($items, $item3);
+           
+            $item4->id_producto = 6;
+            $item4->nombre    = 'hamburguesa garzon';
+            $item4->descripcion  = 'descripcion de garzon';
+            $item4->precio = 400;
+            $item4->foto    = '../../public/img/carta/burger/burger_4.jpg';
+            $item4->stock  = 7;
+            $item4->categoria  = 'hamburguesa';
+
+            array_push($items, $item4);
+        
+        $this->assertEquals($items, $this->cp->get_productos('hamburguesa'));
+    }
+    
+    
 
 }
