@@ -97,6 +97,40 @@ class Consulta_PedidoModelTest extends TestCase
             $this->cp->set_estado_listo(1);
         }
 
+        public function test_update_estado_pedidos(){
+            $this->assertEquals(true, $this->cp->update_estado_pedidos(3));
+            $this->cp->set_estado_listo(1);
+
+        }
+
+        public function test_get_pedidos_u(){
+                 $items=[];
+                 $item = new Producto();
+                 $item->id_producto = 1;
+                 $item->nombre = 'Cerveza Ipa';
+                 $item->precio = 150;
+                 $item->cantidad = 5;
+                 array_push($items, $item);
+                 $this->assertEquals($items, $this->cp->get_pedidos_u(3));
+        }
+
+        public function test_get_cuenta(){
+            $items=[];
+            $cuenta = new Cuenta();
+            $item = new Producto();
+            $item->id_producto = 1;
+            $item->nombre = 'Cerveza Ipa';
+            $item->precio = 150;
+            $item->cantidad = 5;
+            array_push($items, $item);
+            $cuenta->productos = $items;
+            $cuenta->fecha = date('j-m-y h:i:s');
+            $cuenta->mesa = 3;
+            $cuenta->nombre_restaurante = 'Antares';
+            $this->assertEquals($cuenta, $this->cp->get_cuenta(3));
+
+        }
+
 
 
 }
