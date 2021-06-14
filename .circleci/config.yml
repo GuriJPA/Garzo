@@ -20,7 +20,6 @@ jobs:
 
 
       # prepare the database
-      - run: mysqladmin create test --host="127.0.0.1" --user="root" --password="root"
       - run:
           name: Mysql database
           command: mysql  -h 127.0.0.1 -u root -e "create database garcon;"
