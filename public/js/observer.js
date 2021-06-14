@@ -1,26 +1,26 @@
-function ObserverList(){
-    this.observerList = [];
+function ListaCheckBoxSlaves(){
+    this.ListaCheckBoxSlaves = [];
   }
    
-  ObserverList.prototype.add = function( obj ){
-    return this.observerList.push( obj );
+  ListaCheckBoxSlaves.prototype.add = function( obj ){
+    return this.ListaCheckBoxSlaves.push( obj );
   };
    
-  ObserverList.prototype.count = function(){
-    return this.observerList.length;
+  ListaCheckBoxSlaves.prototype.count = function(){
+    return this.ListaCheckBoxSlaves.length;
   };
    
-  ObserverList.prototype.get = function( index ){
-    if( index > -1 && index < this.observerList.length ){
-      return this.observerList[ index ];
+  ListaCheckBoxSlaves.prototype.get = function( index ){
+    if( index > -1 && index < this.ListaCheckBoxSlaves.length ){
+      return this.ListaCheckBoxSlaves[ index ];
     }
   };
    
-  ObserverList.prototype.indexOf = function( obj, startIndex ){
+  ListaCheckBoxSlaves.prototype.indexOf = function( obj, startIndex ){
     var i = startIndex;
    
-    while( i < this.observerList.length ){
-      if( this.observerList[i] === obj ){
+    while( i < this.ListaCheckBoxSlaves.length ){
+      if( this.ListaCheckBoxSlaves[i] === obj ){
         return i;
       }
       i++;
@@ -29,23 +29,23 @@ function ObserverList(){
     return -1;
   };
    
-  ObserverList.prototype.removeAt = function( index ){
-    this.observerList.splice( index, 1 );
+  ListaCheckBoxSlaves.prototype.removeAt = function( index ){
+    this.ListaCheckBoxSlaves.splice( index, 1 );
   };
 
-  function Subject(){
-    this.observers = new ObserverList();
+  function checkBoxMaster(){
+    this.observers = new ListaCheckBoxSlaves();
   }
    
-  Subject.prototype.addObserver = function( observer ){
+  checkBoxMaster.prototype.addObserver = function( observer ){
     this.observers.add( observer );
   };
    
-  Subject.prototype.removeObserver = function( observer ){
+  checkBoxMaster.prototype.removeObserver = function( observer ){
     this.observers.removeAt( this.observers.indexOf( observer, 0 ) );
   };
    
-  Subject.prototype.notify = function( context ){
+  checkBoxMaster.prototype.notify = function( context ){
     var observerCount = this.observers.count();
     for(var i=0; i < observerCount; i++){
       this.observers.get(i).update( context );
@@ -53,7 +53,7 @@ function ObserverList(){
   };
 
   // The Observer
-function Observer(){
+function checkBoxSlave(){
     this.update = function(){
       // ...
       
@@ -74,10 +74,10 @@ function extend( obj, extension ){
 
    
    
-  // Concrete Subject
+  // Concrete checkBoxMaster
    
-  // Extend the controlling checkbox with the Subject class
-  extend( controlCheckbox, new Subject() );
+  // Extend the controlling checkbox with the checkBoxMaster class
+  extend( controlCheckbox, new checkBoxMaster() );
    
   // Clicking the checkbox will trigger notifications to its observers
   controlCheckbox.onclick = function(){
@@ -107,7 +107,7 @@ function extend( obj, extension ){
     var check = document.getElementById(i);
    
     // Extend the checkbox with the Observer class
-    extend( check, new Observer() );
+    extend( check, new checkBoxSlave() );
     
 
     // Override with custom update behaviour
@@ -116,7 +116,7 @@ function extend( obj, extension ){
     };
    
     // Add the new observer to our list of observers
-    // for our main subject
+    // for our main checkBoxMaster
     controlCheckbox.addObserver( check );
       
   }
