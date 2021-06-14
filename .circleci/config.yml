@@ -47,7 +47,7 @@ jobs:
       - run:
           name: Create non-admin user
           command: |
-            ls -la
+            pwd
             sudo mysql -u root -e "CREATE DATABASE garcon;"
             sudo mysql -u root -e "DROP DATABASE IF EXISTS garcon;CREATE DATABASE garcon;USE garcon;" < /home/garcon.sql
       - run: composer install -n --prefer-dist
