@@ -49,7 +49,7 @@ jobs:
           command: |
             ls -la
             sudo mysql -u root -e "CREATE DATABASE garcon;"
-            cat BD/garcon.sql | mysql --password --user root garcon
+            sudo mysql -u root -p'password' garcon < BD/garcon.sql
       - run: composer install -n --prefer-dist
 
       # run tests
