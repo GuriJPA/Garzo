@@ -125,8 +125,7 @@
                 $totalesSinCero = [];
                 foreach($totales as &$valor){
                     if($valor!=0)
-                        array_push($totalesSinCero, $valor);
-                        
+                        array_push($totalesSinCero, $valor);  
                 }
                 unset($valor);
                 
