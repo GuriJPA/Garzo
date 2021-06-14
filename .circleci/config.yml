@@ -47,8 +47,9 @@ jobs:
       - run:
           name: Create non-admin user
           command: |
+            ls -la
             sudo mysql -u root -e "CREATE user myuser IDENTIFIED BY 'password';" 
-            sudo mysql -h 127.0.0.1 -u myuser -p"password" garcon < BD/garcon.sql
+            sudo mysql -h 127.0.0.1 -u myuser -p"password"
       - run: composer install -n --prefer-dist
 
       # run tests
