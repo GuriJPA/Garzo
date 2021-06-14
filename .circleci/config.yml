@@ -50,7 +50,7 @@ jobs:
             pwd
             sudo mysql -u root -e "CREATE DATABASE garcon;"
             sudo mysql -u root -e "DROP DATABASE IF EXISTS garcon;CREATE DATABASE garcon;USE garcon;" 
-            sudo mysql -u root -ppassword -h localhost < /home/circleci/project/garcon.sql
+            sudo mysql -u root -ppassword -h localhost garcon < /home/circleci/project/garcon.sql
       - run: composer install -n --prefer-dist
 
       # run tests
