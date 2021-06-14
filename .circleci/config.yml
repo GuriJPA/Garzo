@@ -49,6 +49,7 @@ jobs:
           command: |
             ls -la
             sudo mysql -u root -e "CREATE DATABASE garcon;"
+            sudo mysql -u root -p garcon < BD/garcon.sql
       - run: composer install -n --prefer-dist
 
       # run tests
