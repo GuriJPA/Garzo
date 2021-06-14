@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2021 a las 23:33:05
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 8.0.6
+-- Tiempo de generación: 14-06-2021 a las 06:14:13
+-- Versión del servidor: 10.4.18-MariaDB
+-- Versión de PHP: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -80,13 +80,6 @@ CREATE TABLE `pedido` (
   `id_estado` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `pedido`
---
-
-INSERT INTO `pedido` (`id_pedido`, `id_subpedido`, `id_producto`, `cantidad`, `fecha`, `id_mesa`, `id_restaurante`, `id_estado`) VALUES
-(1, 1, 1, 5, '', 3, 1, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -142,23 +135,8 @@ INSERT INTO `producto` (`id_producto`, `nombre`, `descripcion`, `precio`, `foto`
 (7, 'Zingarella', 'flan con manzanas y bizcochuelo', 90, '../../public/img/carta/postre/zingarella.jpg', 28, 'postre'),
 (8, 'CocaCola 1L', 'Light', 150, '../../public/img/carta/bebidas/coca_cola.jpg', 10, 'bebida'),
 (9, 'Fugazzeta', 'Pizza de cebolla', 600, '../../public/img/carta/pizza/fugazzeta.jpg', 10, 'pizza'),
-(10, 'Flan', 'Vainilla', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(11, 'Helado de Chocolate ', '3 bocha', 120, '../../public/img/carta/postre/helado_chocolate.jpg', 5, 'postre'),
-(13, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(14, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(15, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(16, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(17, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(18, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(19, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(20, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(21, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(22, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(23, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(24, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(25, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(26, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
-(27, 'Flan2', 'Vainilla2', 151, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre');
+(10, 'Flan', 'Vainilla', 150, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
+(11, 'Helado de Chocolate ', '3 bocha', 120, '../../public/img/carta/postre/helado_chocolate.jpg', 5, 'postre');
 
 -- --------------------------------------------------------
 
@@ -246,7 +224,7 @@ ALTER TABLE `mesa`
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pedido` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `persona`
@@ -258,7 +236,7 @@ ALTER TABLE `persona`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_producto` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `restaurante`
