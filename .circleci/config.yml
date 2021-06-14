@@ -47,11 +47,8 @@ jobs:
       - run:
           name: Create non-admin user
           command: |
-            ls -la
             sudo mysql -u root -e "CREATE DATABASE garcon;"
-            sudo mysql -u root -p'password' garcon < BD/garcon.sql
-            sudo mysql -u root -e "USE garcon;"
-            sudo mysql -u root -e "SHOW tables;"
+            sudo mysql -u root -p'password' garcon < garcon.sql
       - run: composer install -n --prefer-dist
 
       # run tests
