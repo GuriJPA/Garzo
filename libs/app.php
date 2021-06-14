@@ -13,7 +13,7 @@ class App{
         session_start();
 
         //RECORDAR CAMBIAR A install.php PARA LA VERSION FINAL
-        if(file_exists("controllers/install2.php")){
+        if(file_exists("controllers/install.php")){
 
             $archivoController = 'controllers/install.php';
             require_once $archivoController;
