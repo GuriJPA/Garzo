@@ -9,7 +9,7 @@ jobs:
       # specify the version you desire here
       - image: circleci/php:7.3-apache-stretch-node-browsers
         environment:
-          MYSQL_ROOT_PASSWORD: password
+          MYSQL_ROOT_PASSWORD:
           MYSQL_HOST: 127.0.0.1
 
       # Specify service dependencies here if necessary
@@ -48,7 +48,7 @@ jobs:
           name: Create non-admin user
           command: |
             sudo mysql -u root -e "CREATE DATABASE garcon;"
-            sudo mysql -u root -p'password' garcon < garcon.sql
+            sudo mysql -u root -p'' garcon < garcon.sql
       - run: composer install -n --prefer-dist
 
       # run tests
