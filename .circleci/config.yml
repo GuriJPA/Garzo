@@ -50,7 +50,8 @@ jobs:
             ls -la
             sudo mysql -u root -e "CREATE user myuser IDENTIFIED BY 'password';" 
             sudo mysql -h 127.0.0.1 -u myuser -p"password"
-            CREATE DATABASE garcon
+            sudo mysql CREATE DATABASE garcon
+            sudo mysql exit
       - run: composer install -n --prefer-dist
 
       # run tests
