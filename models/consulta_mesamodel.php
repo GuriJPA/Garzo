@@ -16,7 +16,7 @@ class Consulta_MesaModel extends Model{
                 $item = new Mesa();
                 $item->id_mesa = $row['id_mesa'];
                 $item->numeroMesa = $row['numeroMesa'];
-                $item->pidioMozo = $row['pidioMozo'];
+                //$item->pidioMozo = $row['pidioMozo'];
                 array_push($items, $item);
         }
         return $items;

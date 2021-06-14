@@ -171,14 +171,14 @@
                     $mesa = new Mesa();
                     $mesa = $row;
                     $contador = 1;
-                    $pidioMozo = $mesa->pidioMozo;
+                    //$pidioMozo = $mesa->pidioMozo;
                     
                     
                         
                     echo "<tr>
                         <td>N MESA $mesa->id_mesa</td>                     
                         <td><input type='button' onclick=CobrarMesa($mesa->id_mesa,$ValidarcobroJSON) value='COBRAR MESA'/></td>
-                        <td><input type='button' onclick=pidioMozo($mesa->id_mesa,$pidioMozo) value='SE SOLICITA MOZO: $pidioMozo'/></td>
+                        <td><input type='button'  value='SE SOLICITA MOZO: '/></td>
                         </tr>";
                        
                     echo "<tr>
