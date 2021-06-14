@@ -25,9 +25,6 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: composer update
-      - run: composer install -n --prefer-dist
-
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.lock" }}
           paths:
@@ -44,7 +41,9 @@ jobs:
 
       # prepare the database
       - run: mysqladmin create test --host="127.0.0.1" --user="root" --password="root"
-      - run: php artisan migrate --env=testing --force
+      - run:
+          name: Mysql database
+          command: mysql  -h 127.0.0.1 -u root -e "create database garcon;"
 
       # run tests
       - run: ./vendor/bin/phpunit
