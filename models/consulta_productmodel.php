@@ -111,7 +111,7 @@ class Consulta_ProductModel extends Model{
 
 
     public function delete_producto($id_param){
-      echo "<p>Ejecutaste el método delete_producto</p>";
+      //echo "<p>Ejecutaste el método delete_producto</p>";
       echo $id_param;
         
         try{

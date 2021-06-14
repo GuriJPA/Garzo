@@ -4,7 +4,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\DomCrawler\Crawler;
 require_once 'config/config.php';
 
-class Main extends TestCase
+class mainTest extends TestCase
 {
 
     public function test_display_home_page(){
