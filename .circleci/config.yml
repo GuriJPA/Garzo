@@ -25,7 +25,7 @@ jobs:
       #install mysql client
       - run: sudo apt-get install mysql-client
       # create databases
-      - run: mysql -h 127.0.0.1 -u root -e "create database carddb"
+      - run: mysql -h 127.0.0.1 -u root -e "create database garcon"
 
       # run tests
       - run: ./vendor/bin/phpunit
