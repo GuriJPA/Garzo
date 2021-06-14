@@ -85,57 +85,57 @@ class InstallModel extends Model{
 
         $sql = "CREATE TABLE IF NOT EXISTS `estados` (
             `id_estado` int(10) NOT NULL,
-            `nombre` varchar(100) NOT NULL
+              `nombre` varchar(100) NOT NULL
             ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;";
 
         $sql .= "CREATE TABLE IF NOT EXISTS `mesa` (
-        `id_mesa` int(20) NOT NULL,
-            `numeroMesa` int(10) NOT NULL
-        ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=3 ;";
+            `id_mesa` int(20) NOT NULL,
+              `numeroMesa` int(10) NOT NULL
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=4 ;";
 
 
         $sql .= "CREATE TABLE IF NOT EXISTS `pedido` (
-        `id_pedido` int(10) NOT NULL,
-            `id_subpedido` int(10) NOT NULL,
-            `id_producto` int(20) NOT NULL,
-            `cantidad` int(20) NOT NULL,
-            `fecha` varchar(100) NOT NULL,
-            `id_mesa` int(50) NOT NULL,
-            `id_restaurante` int(50) NOT NULL,
-            `id_estado` int(10) NOT NULL
-        ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=15 ;";
+            `id_pedido` int(10) NOT NULL,
+              `id_subpedido` int(10) NOT NULL,
+              `id_producto` int(20) NOT NULL,
+              `cantidad` int(20) NOT NULL,
+              `fecha` varchar(100) NOT NULL,
+              `id_mesa` int(50) NOT NULL,
+              `id_restaurante` int(50) NOT NULL,
+              `id_estado` int(10) NOT NULL
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;";
 
 
         $sql .= "CREATE TABLE IF NOT EXISTS `persona` (
-        `id_persona` int(10) NOT NULL,
-        `usuario` varchar(20) NOT NULL,
-        `nombre` varchar(50) NOT NULL,
-        `apellidos` varchar(50) NOT NULL,
-        `edad` int(11) NOT NULL,
-        `descripcion` varchar(100) NOT NULL,
-        `email` varchar(40) NOT NULL,
-        `contrasena` varchar(100) NOT NULL,
-        `foto` varchar(80) DEFAULT NULL COMMENT 'se va guardar la ruta del folder dond estan las imagenes'
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+            `id_persona` int(10) NOT NULL,
+              `usuario` varchar(20) NOT NULL,
+              `nombre` varchar(50) NOT NULL,
+              `apellidos` varchar(50) NOT NULL,
+              `edad` int(11) NOT NULL,
+              `descripcion` varchar(100) NOT NULL,
+              `email` varchar(40) NOT NULL,
+              `contrasena` varchar(100) NOT NULL,
+              `foto` varchar(80) DEFAULT NULL COMMENT 'se va guardar la ruta del folder dond estan las imagenes'
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;";
 
 
         $sql .= "CREATE TABLE IF NOT EXISTS `producto` (
-        `id_producto` int(50) NOT NULL,
-            `nombre` varchar(30) NOT NULL,
-            `descripcion` varchar(100) NOT NULL,
-            `precio` int(20) NOT NULL,
-            `foto` varchar(300) DEFAULT NULL,
-            `stock` int(10) NOT NULL,
-            `categoria` varchar(20) NOT NULL
-        ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=42 ;";
+            `id_producto` int(50) NOT NULL,
+              `nombre` varchar(30) NOT NULL,
+              `descripcion` varchar(100) NOT NULL,
+              `precio` int(20) NOT NULL,
+              `foto` varchar(300) DEFAULT NULL,
+              `stock` int(10) NOT NULL,
+              `categoria` varchar(20) NOT NULL
+            ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=12 ;";
 
 
         $sql .= "CREATE TABLE IF NOT EXISTS `restaurante` (
-        `id_restaurante` int(11) NOT NULL,
-            `nombre` varchar(50) NOT NULL,
-            `foto` varbinary(200) NOT NULL,
-            `id_persona` int(11) NOT NULL
-        ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=3 ;";
+            `id_restaurante` int(11) NOT NULL,
+              `nombre` varchar(50) NOT NULL,
+              `foto` varbinary(200) NOT NULL,
+              `id_persona` int(11) NOT NULL
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;";
 
 
         $sql .= "ALTER TABLE `estados`
@@ -160,16 +160,19 @@ class InstallModel extends Model{
         MODIFY `id_estado` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;";
 
         $sql .= "ALTER TABLE `mesa`
-        MODIFY `id_mesa` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;";
+        MODIFY `id_mesa` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;";
 
         $sql .= "ALTER TABLE `pedido`
-        MODIFY `id_pedido` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;";
+        MODIFY `id_pedido` int(10) NOT NULL AUTO_INCREMENT;";
+
+        $sql .= "ALTER TABLE `persona`
+        MODIFY `id_persona` int(10) NOT NULL AUTO_INCREMENT;";
 
         $sql .= "ALTER TABLE `producto`
-        MODIFY `id_producto` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;";
+        MODIFY `id_producto` int(50) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;";
 
         $sql .= "ALTER TABLE `restaurante`
-        MODIFY `id_restaurante` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;";
+        MODIFY `id_restaurante` int(11) NOT NULL AUTO_INCREMENT;";
 
         $sql .= "ALTER TABLE `pedido`
         ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE,
@@ -193,38 +196,23 @@ class InstallModel extends Model{
 
         $sql .= "INSERT INTO `mesa` (`id_mesa`, `numeroMesa`) VALUES
         (1, 1),
-        (2, 2);";
-
-
-        $sql .= "INSERT INTO `persona` (`id_persona`, `usuario`, `nombre`, `apellidos`, `edad`, `descripcion`, `email`, `contrasena`, `foto`) VALUES
-        (1, 'yocristian21', 'Cristian Yamil', 'Ortega', 18, 'Dueño de del restorante la nueva esquina', 'yocristian21@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 'img/yocristian21/foto1.jpg'),
-        (2, 'admin', 'fabricio', 'recchini', 25, 'Dueño del resto bar Antares.', 'fabri@gmail.com', 'd6b0ab7f1c8ab8f514db9a6d85de160a', 'img/fabri21/perfil2.jpg');";
-
+        (2, 2),
+        (3, 3);";
 
 
         $sql .= "INSERT INTO `producto` (`id_producto`, `nombre`, `descripcion`, `precio`, `foto`, `stock`, `categoria`) VALUES
-        (1, 'cerveza ipa', 'doble lopulo', 150, 'asd', 32, 'bebida'),
-        (3, 'hamburguesa doblee', 'Descripcion: 2 medallones, queso, pan', 349, '../../public/img/carta/burger/burger_1.jpg', 0, 'hamburguesa'),
-        (4, 'hamburguesa triplee', 'Descripcion: 3 medallones, queso, pan', 400, '../../public/img/carta/burger/burger_2.jpg', 11, 'hamburguesa'),
-        (5, 'hamburguesa premium', 'descripcion premium', 500, '../../public/img/carta/burger/burger_3.jpg', 5, 'hamburguesa'),
-        (6, 'hamburguesa garzon', 'descripcion de garzon', 400, '../../public/img/carta/burger/burger_4.jpg', 7, 'hamburguesa'),
-        (30, 'muzzarela', 'queso muzzarela', 400, 'img/pizza/foto1.jpg', 32, 'pizza'),
-        (40, 'zingarella', 'flan con manzanas y bizcochuelo', 90, 'img/postres/foto1.jpg', 28, 'postre');";
+        (1, 'Cerveza Ipa', 'doble lopulo', 150, '../../public/img/carta/bebidas/cerveza_ipa.jpg', 32, 'bebida'),
+        (2, 'Muzzarella', 'queso muzzarella', 400, '../../public/img/carta/pizza/muzzarella.jpg', 32, 'pizza'),
+        (3, 'Hamburguesa Doble', 'Descripcion: 2 medallones, queso, pan', 349, '../../public/img/carta/burger/burger_1.jpg', 10, 'hamburguesa'),
+        (4, 'Hamburguesa Triple', 'Descripcion: 3 medallones, queso, pan', 400, '../../public/img/carta/burger/burger_2.jpg', 11, 'hamburguesa'),
+        (5, 'Hamburguesa Premium', 'descripcion premium', 500, '../../public/img/carta/burger/burger_3.jpg', 5, 'hamburguesa'),
+        (6, 'Hamburguesa Garzon', 'descripcion de garzon', 400, '../../public/img/carta/burger/burger_4.jpg', 7, 'hamburguesa'),
+        (7, 'Zingarella', 'flan con manzanas y bizcochuelo', 90, '../../public/img/carta/postre/zingarella.jpg', 28, 'postre'),
+        (8, 'CocaCola 1L', 'Light', 150, '../../public/img/carta/bebidas/coca_cola.jpg', 10, 'bebida'),
+        (9, 'Fugazzeta', 'Pizza de cebolla', 600, '../../public/img/carta/pizza/fugazzeta.jpg', 10, 'pizza'),
+        (10, 'Flan', 'Vainilla', 150, '../../public/img/carta/postre/flan_vainilla.jpg', 10, 'postre'),
+        (11, 'Helado de Chocolate ', '3 bocha', 120, '../../public/img/carta/postre/helado_chocolate.jpg', 5, 'postre');";
 
-
-
-        $sql .= "INSERT INTO `restaurante` (`id_restaurante`, `nombre`, `foto`, `id_persona`) VALUES
-        (1, 'Antares', 0x666f746f5f416e7461726573, 1),
-        (2, 'Temple', '', 2);";
-
-
-
-        $sql .= "INSERT INTO `pedido` (`id_pedido`, `id_subpedido`, `id_producto`, `cantidad`, `fecha`, `id_mesa`, `id_restaurante`, `id_estado`) VALUES
-        (1, 1, 5, 1, '30-05-21 20:13:47', 1, 1, 5),
-        (2, 1, 30, 2, '30-05-21 20:13:47', 1, 1, 5),
-        (3, 2, 40, 1, '30-05-21 20:30:27', 1, 1, 5),
-        (4, 2, 6, 4, '30-05-21 20:30:27', 1, 1, 5),
-        (11, 1, 4, 2, '30-05-21 20:45:19', 2, 1, 1);";
 
 
 
