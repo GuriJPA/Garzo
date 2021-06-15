@@ -48,9 +48,7 @@ jobs:
           name: Create non-admin user
           command: |
             pwd
-            sudo mysql -u root -e "CREATE DATABASE garcon;"
-            sudo mysql -u root -e "DROP DATABASE IF EXISTS garcon;CREATE DATABASE garcon;USE garcon;" 
-            sudo mysql -u root -ppassword -h localhost garcon < /home/circleci/project/garcon.sql
+            - mysql -u ubuntu -D circle_test < garcon.sql
       - run: composer install -n --prefer-dist
 
       # run tests
