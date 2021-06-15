@@ -48,10 +48,11 @@ jobs:
           name: Create non-admin user
           command: |
             pwd
-            sudo mysql -u root -e "USE mysql;SELECT User, Host, plugin FROM mysql.user;"
-            # sudo mysql -u root -e "CREATE DATABASE garcon;"
+            sudo mysql -u root -e "USE mysql;UPDATE user SET plugin='mysql_native_password' WHERE User='root';FLUSH PRIVILEGES;exit;"
+            sudo service mysql restart
+            sudo mysql -u root -e "CREATE DATABASE garcon;"
             # sudo mysql -u root -e "DROP DATABASE IF EXISTS garcon;CREATE DATABASE garcon;USE garcon;" 
-            # sudo mysql -u root -ppassword -h localhost garcon < /home/circleci/project/garcon.sql
+            sudo mysql -u root -ppassword -h localhost garcon < /home/circleci/project/garcon.sql
       - run: composer install -n --prefer-dist
 
       # run tests
