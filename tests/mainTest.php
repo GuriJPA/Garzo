@@ -11,7 +11,7 @@ class mainTest extends TestCase
         $html = file_get_contents("http://localhost/Garzo/");
         // echo $html;
         // Busca la cadena 'Bienvenidos' en el contenido de la variable
-        $posicion = strpos($html, "Bienvenido");
+        $posicion = strpos($html, "Bienvenidos");
         $this->assertGreaterThan(0, $posicion);
     }
 }
