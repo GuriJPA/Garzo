@@ -95,7 +95,7 @@ class Consulta_PedidoModel extends Model{
 
     public function update_estado_pedidos($id_mesa){
         try{
-            $query = $this->db->connect()->prepare('UPDATE PEDIDO SET ID_ESTADO = :id_estado WHERE ID_MESA = :id_mesa');
+            $query = $this->db->connect()->prepare('UPDATE pedido SET id_estado = :id_estado WHERE id_mesa = :id_mesa');
             $query->execute(['id_estado' => 4,'id_mesa' => $id_mesa]);
             return true;
         }catch(PDOException $e){
@@ -166,7 +166,7 @@ class Consulta_PedidoModel extends Model{
  
      public function add_pedidos($par_id_producto,$par_cantidad,$par_mesa,$par_id_subpedido){      
          try{
-             $query = $this->db->connect()->prepare('INSERT INTO PEDIDO (ID_SUBPEDIDO, ID_PRODUCTO, CANTIDAD, FECHA, ID_MESA, ID_RESTAURANTE, ID_ESTADO) VALUES (:id_subpedido, :id_producto, :cantidad, :fecha, :id_mesa, :id_restaurante, :id_estado)');
+             $query = $this->db->connect()->prepare('INSERT INTO pedido (id_subpedido, id_producto, cantidad, fecha, id_mesa, id_restaurante, id_estado) VALUES (:id_subpedido, :id_producto, :cantidad, :fecha, :id_mesa, :id_restaurante, :id_estado)');
              $query->execute(['id_subpedido' => $par_id_subpedido, 'id_producto' => $par_id_producto, 'cantidad' => $par_cantidad, 'fecha' => '', 'id_mesa' => $par_mesa, 'id_restaurante' => '1', 'id_estado' => '1']);
              return true;
          }catch(PDOException $e){
