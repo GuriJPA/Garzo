@@ -22,9 +22,9 @@ Definir la ip local del servidor como estática.
 
 ## Demo
 
-# Credenciales
+## Credenciales
    * Usuario: admin
    * Contraseña: 1234
 
-# Link
+## Link
 http://garzon.epizy.com/
