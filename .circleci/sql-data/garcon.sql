@@ -50,7 +50,7 @@ INSERT INTO `estados` (`id_estado`, `nombre`) VALUES
 --
 
 CREATE TABLE `mesa` (
-  `id_mesa` int(20) NOT NULL,
+  `id_mesa` int(50) NOT NULL,
   `numeroMesa` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
