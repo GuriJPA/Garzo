@@ -99,6 +99,7 @@ class Consulta_PedidoModel extends Model{
             $query->execute(['id_estado' => 4,'id_mesa' => $id_mesa]);
             return true;
         }catch(PDOException $e){
+            echo $e;
             return false;
         }
     }
@@ -170,6 +171,7 @@ class Consulta_PedidoModel extends Model{
              $query->execute(['id_subpedido' => $par_id_subpedido, 'id_producto' => $par_id_producto, 'cantidad' => $par_cantidad, 'fecha' => '', 'id_mesa' => $par_mesa, 'id_restaurante' => '1', 'id_estado' => '1']);
              return true;
          }catch(PDOException $e){
+             echo $e;
              return false;
          }
  
