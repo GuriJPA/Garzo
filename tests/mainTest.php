@@ -8,7 +8,7 @@ class mainTest extends TestCase
 {
 
     public function test_display_home_page(){
-        $html = file_get_contents("http://localhost/Garzo/");
+        $html = file_get_contents("./views/main/index.php", true);
         // echo $html;
         // Busca la cadena 'Bienvenidos' en el contenido de la variable
         $posicion = strpos($html, "Bienvenidos");
